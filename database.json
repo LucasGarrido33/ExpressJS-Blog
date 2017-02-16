@@ -1,0 +1,22 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "host": "localhost",
+    "user": "root",
+    "password": "sa4lu2",
+    "database": "honey_dev"
+  },
+
+  "test": {
+    "driver": "mysql",
+    "user": "root",
+    "password": "sa4lu2"
+  },
+
+  "prod": {
+    "driver": "mysql",
+    "user": "root",
+    "password": "sa4lu2"
+  }
+
+}
