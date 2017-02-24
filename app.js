@@ -1,18 +1,19 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var logger = require('morgan'); //http logger
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var csurf = require('csurf'); //crsf protection
+var bodyParser = require('body-parser'); //http req body parser
 var session = require('express-session');
 var serveStatic = require('serve-static');
-var fileType = require('fs');
-let formidable = require('express-formidable');
+var methodOverride = require('method-override'); //allow put and delete method
 
 
 var index = require('./routes/index');
 var post = require('./routes/post');
 var about = require('./routes/about');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -20,24 +21,28 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// app.use('/post', formidable({
-//   encoding: 'utf-8',
-//   uploadDir: '/upload',
-//   multiples: true, // req.files to be arrays of files
-// }));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
+}))
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static('uploads'));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use('/', index);
 app.use('/post', post);
 app.use('/about', about);
-
+app.use('/admin', admin);
 
 
 // catch 404 and forward to error handler

@@ -12,8 +12,11 @@ class Post {
     this.category = category;
   }
 
+  getId(){
+    return this.id;
+  }
   getThumb(){
-    return this.thumbnail;
+    return this.thumbnail_path;
   }
 
   getTitle(){
@@ -28,16 +31,31 @@ class Post {
     return this.category;
   }
 
-  static create (title, content, thumbnail_path, category_id, cb){
-    connection.query('INSERT INTO post SET title = ?, content = ?, thumbnail_path = ?, category_id = ?', [title, content, thumbnail_path, category_id], (err, result) => {
+  static create (title, content, category_id, cb){
+    connection.query('INSERT INTO post SET title = ?, content = ?, thumbnail_path = ?, category_id = ?', [title, content, 'test', category_id], (err, result) => {
       if(err) throw err
        cb(result);
    });
 
   }
 
-  static delete(){
+  static addImages (pathArray, post_id, cb){
 
+    let argumentsArray = [];
+    pathArray.map((row) => argumentsArray.push([post_id, row]));
+
+    connection.query('INSERT INTO post_image (post_id, path) VALUES ?', [argumentsArray], (err, result) => {
+      if(err) throw err
+       cb(result);
+   });
+
+  }
+
+  static delete(id, cb){
+    connection.query('DELETE FROM post WHERE id = ?', [id], (err, result) => {
+      if(err) throw err
+       cb(result);
+   });
 
   }
 
@@ -47,7 +65,7 @@ class Post {
   }
 
   static all(cb){
-    var options = {sql:'SELECT * FROM post INNER JOIN category ON post.category_id = category.id', nestTables: true};
+    let options = {sql:'SELECT * FROM post INNER JOIN category ON post.category_id = category.id', nestTables: true};
 
     connection.query(options,(error, results, fields) => {
       if(error) throw error;

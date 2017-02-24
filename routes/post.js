@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let fs = require('fs');
 
 
 router.param('post_id', function(req, res, next, id) {
@@ -17,6 +18,7 @@ router.param('post_id', function(req, res, next, id) {
   });
 });
 
+
 router.route('/:post_id([0-9]{1,3})')
 .all(function(req, res, next) {
   // runs for all HTTP verbs first
@@ -32,24 +34,9 @@ router.route('/:post_id([0-9]{1,3})')
   // save user ... etc
   res.json(req.user);
 })
-.post(function(req, res, next) {
-  next(new Error('not implemented'));
-})
 .delete(function(req, res, next) {
   next(new Error('not implemented'));
 });
 
-
-router.get('/add', function(req, res, next) {
-    res.render('add');
-});
-
-//
-// router.post('/add', function(req, res, next){
-//
-//   let Post = require('../models/post');
-//   console.log(req.fields); // contains non-file fields
-//   res.redirect('/');
-// });
 
 module.exports = router;

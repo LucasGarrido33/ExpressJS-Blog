@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  form(method='POST')
+  form(method='POST' enctype='multipart/form-data')
     div.form-group
       label(for='title') Titre:
       input#title.form-control(type='text', placeholder='first and last' name='title')
@@ -10,11 +10,14 @@ block content
       label(for='content') Description:
       textarea#content.form-control(placeholder='name@email.com' name='content')
     div.form-group
-      label(for='image') Images:
-      input#title.form-control(type='file', name='image', multiple='multiple')
+      label(for='images') Images:
+      input#title.form-control(type='file', name='images', multiple='multiple')
 
     div.form-group
       label(for='category') Categorie:
       select#category.form-control(name='category')
+        each category in categories
+          option(value=category.id) #{category.name}
+
 
     button.btn.btn-primary(type='submit') Ajouter
