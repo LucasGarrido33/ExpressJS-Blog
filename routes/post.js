@@ -1,21 +1,20 @@
-let express = require('express');
-let router = express.Router();
+var express = require('express');
+var router = express.Router();
 let fs = require('fs');
+let Post = require('../models/post');
 
 
 router.param('post_id', function(req, res, next, id) {
 
-  let Post = require('../models/post');
-
   // try to get the post details from the Post model and attach it to the request object
-  Post.find(id, function(post) {
+  Post.find(id).then(function(post) {
     if (post) {
       req.post = post;
       next();
     } else {
-      next(new Error('failed to load post'));
+      next(new Error('Failed to load post'));
     }
-  });
+  }).catch(next);
 });
 
 

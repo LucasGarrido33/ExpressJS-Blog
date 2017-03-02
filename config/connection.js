@@ -1,12 +1,11 @@
 let mysql = require('mysql');
 
-//database connexion 
+//database connexion
 let connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'sa4lu2',
-  database: 'honey_dev'
-
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
 
 connection.connect();
@@ -17,5 +16,6 @@ connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
     console.log('The solution is: ', rows[0].solution)
 })
 
-module.exports = connection;
+// connection.end();
 
+module.exports = connection;
