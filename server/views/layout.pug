@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block header
+      li
+        ul
+          a(href="/") index
+        ul
+          a(href="/admin/") admin
+        ul
+          a(href="/resume") resume
+        ul
+          a(href="/about") about
+
+    block content
