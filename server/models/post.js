@@ -44,13 +44,10 @@ class Post {
     );
   }
 
-  static addImages (pathArray, post_id){
+  static addImages (pathArray){
     return new Promise(
       function(resolve, reject){
-        let argumentsArray = [];
-        pathArray.map((row) => argumentsArray.push([post_id, row]));
-
-        connection.query('INSERT INTO post_image (post_id, path) VALUES ?', [argumentsArray], (error, result) => {
+        connection.query('INSERT INTO post_image (post_id, path) VALUES ?', [pathArray], (error, result) => {
           if(error){
             return reject(error);
           }

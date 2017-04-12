@@ -25,7 +25,7 @@ router.route('/:post_id([0-9]{1,3})')
   next();
 })
 .get(function(req, res, next) {
-  res.render('post', {post: req.post});
+  res.json(req.post);
 })
 .put(function(req, res, next) {
   // just an example of maybe updating the user

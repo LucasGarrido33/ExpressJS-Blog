@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Admin extends Component {
+class NotFound extends Component {
   render(){
     return (
       <div>
-        <p>Contact</p>
+        <p>Page not found</p>
       </div>
     );
   }
 }
 
-export default Admin;
+export default NotFound;

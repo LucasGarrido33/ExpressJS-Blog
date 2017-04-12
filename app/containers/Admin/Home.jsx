@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Error extends Component {
+class Home extends Component {
   render(){
     return (
       <div>
-        <p>Page not found</p>
+        <p>Welcome to admin section.</p>
       </div>
     );
   }
 }
 
-export default Error;
+export default Home;

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Nav from './Nav';
+import Header from '../components/Header';
+import Nav from '../components/Nav';
 
-
-class Main extends Component {
+class App extends Component {
 
   render(){
     return (
@@ -11,10 +10,10 @@ class Main extends Component {
         <Header />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-10">
+            <div className="col-md-10">
               {this.props.children}
             </div>
-            <div className="social-list col">
+            <div className="social-list col-md-2">
               <Nav />
             </div>
           </div>
@@ -25,4 +24,8 @@ class Main extends Component {
   }
 }
 
-export default Main;
+App.propTypes = {
+  children: App.element.isRequired
+};
+
+export default App;

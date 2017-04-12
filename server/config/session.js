@@ -16,13 +16,12 @@ const options = {
 };
 
 var sessionStore = new MySQLStore(options, connection);
-
 module.exports = session({
     key: 'session_cookie_name',
     secret: 'session_cookie_secret',
     store: sessionStore,
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 600000 }
+    cookie: { maxAge: new Date(Date.now() + 8600000) }
 
 });
