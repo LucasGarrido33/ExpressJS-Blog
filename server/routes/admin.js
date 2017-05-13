@@ -7,12 +7,19 @@ const path = require('path');
 const Post = require('../models/post');
 const Category = require('../models/category');
 const requireLogin = require('../middlewares/auth');
-const util = require('util');
-
 
 var router = express.Router();
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+var upload = multer({ storage: storage })
 
-var upload = multer({ dest: 'uploads/' });
+// var upload = multer({ dest: 'uploads/'});
 var csrfProtection = csrf({ cookie: false });
 
 var jsonParser = bodyParser.json()
@@ -23,6 +30,18 @@ var parseForm = bodyParser.urlencoded({ extended: false })
 
 router.use(expressValidator()); // this line must be immediately after any of the bodyParser middlewares!
 
+router.param('post_id', function(req, res, next, id) {
+
+  Post.find(id).then(function(post) {
+    if (post) {
+      req.post = post;
+      next();
+    } else {
+      next(new Error('Failed to load post'));
+    }
+  }).catch(next);
+});
+
 router.get('/', function (req, res, next) {
   Post.all().then(posts => {
     res.json(posts);
@@ -31,8 +50,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.delete('/', jsonParser, function (req, res, next) {
-  console.log('here')
-  console.log(req.body.post_id)
   Post.delete(req.body.post_id)
   .then(result => {
     res.json(result);
@@ -51,6 +68,17 @@ router.get('/post',csrfProtection, function (req, res, next) {
   }).catch(next);
 });
 
+router.get('/post/:post_id([0-9]{1,3})',csrfProtection, function (req, res, next) {
+  Category.all().then(categories => {
+    res.json( {
+      post: req.post,
+      categories: categories,
+      csrfToken: req.csrfToken()
+    });
+  }).catch(next);
+});
+
+
 router.post('/post', upload.array('images', 12), csrfProtection, function(req, res, next){
 
   req.checkBody('title', 'field is empty').notEmpty();
@@ -63,9 +91,8 @@ router.post('/post', upload.array('images', 12), csrfProtection, function(req, r
       res.status(400).json(result.array());
       return;
     }
-
     Post.create(req.body.title, req.body.content, req.body.category)
-    .then(result => Post.addImages(req.files.map(item => [result.insertId, item.path])))
+    .then(result => Post.addImages(req.files.map(item => [result.insertId, item.filename])))
     .then(result => {
       res.json(result);
     }).catch(next);
@@ -76,15 +103,13 @@ router.post('/post', upload.array('images', 12), csrfProtection, function(req, r
 
 router.get('/categories', function(req, res, next) {
   Category.all().then(categories => {
-    res.json({
-      categories: categories
-    });
+    res.json(categories);
   }).catch(next);
 });
 
 router.post('/categories', jsonParser, function(req, res, next){
 
-  req.checkBody('title', 'Field is empty').notEmpty();
+  req.checkBody('name', 'Field is empty').notEmpty();
 
   req.getValidationResult().then(function(result) {
 
@@ -92,7 +117,7 @@ router.post('/categories', jsonParser, function(req, res, next){
       res.status(400).json(result.array());
       return;
     }
-    Category.create(req.body.title).then(result => {
+    Category.create(req.body.name).then(result => {
       res.json(result);
     }).catch(next);
 

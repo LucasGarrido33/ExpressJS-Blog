@@ -10,25 +10,11 @@ class Post {
     this.content = content;
     this.thumbnail_path = thumbnail_path;
     this.category = category;
+    this.images = [];
   }
 
-  getId(){
-    return this.id;
-  }
-  getThumb(){
-    return this.thumbnail_path;
-  }
-
-  getTitle(){
-    return this.title;
-  }
-
-  getContent(){
-    return this.content;
-  }
-
-  getCategory(){
-    return this.category;
+  addImages(images) {
+    this.images = images;
   }
 
   static create (title, content, category_id){
@@ -83,7 +69,9 @@ class Post {
           if(error){
             return reject(error);
           }
-          resolve(results.map((row) => new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail_path, new Category(row.category.id, row.category.name))));
+          resolve(
+            results.map(
+              (row) => new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail_path, new Category(row.category.id, row.category.name))));
         });
       }
     );

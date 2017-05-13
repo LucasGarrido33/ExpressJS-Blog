@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router';
-import {Button, Glyphicon } from 'react-bootstrap';
+import PostList from '../../components/Admin/PostList';
 
-  class PostList extends Component {
+  class Posts extends Component {
     constructor(props) {
       super(props);
       this.state = {
         posts: []
       };
+      this.deletePost = this.deletePost.bind(this);
 
     }
+
     componentDidMount() {
       fetch('/api/admin/',
       {credentials: 'same-origin'})
@@ -20,8 +21,7 @@ import {Button, Glyphicon } from 'react-bootstrap';
         }));
     }
 
-    handleClick(post){
-
+    deletePost(post) {
       const myHeaders = new Headers({
         'Content-Type': 'application/json'
       });
@@ -32,30 +32,23 @@ import {Button, Glyphicon } from 'react-bootstrap';
         headers: myHeaders,
         body: JSON.stringify({post_id: post.id})
       })
-      .then((response) => response.json())
-      .then((response) => console.log(response));
+      .then((response) => response.json());
 
-      const newState = this.state.posts;
-       if (newState.indexOf(post) > -1) {
-         newState.splice(newState.indexOf(post), 1);
-         this.setState({data: newState});
-       }
+      const newState = Object.assign([], this.state.posts);
+
+      if (newState.indexOf(post) > -1) {
+        newState.splice(newState.indexOf(post), 1);
+        this.setState({posts: newState});
+      }
 
     }
 
     render(){
-      let posts = this.state.posts.map((post) =>
-      <li key={post.id}>
-        <Link to={'admin/post/edit/' + post.id}>{post.title}</Link>
-        <Button bsSize="small" onClick={this.handleClick.bind(this, post)}><Glyphicon glyph="glyphicon glyphicon-remove" /></Button>
-      </li>);
 
       return (
-        <div>
-          <ul>{ posts }</ul>
-        </div>
+        <PostList posts={this.state.posts} onDeletePost={this.deletePost}/>
       );
     }
   }
 
-  export default PostList;
+  export default Posts;

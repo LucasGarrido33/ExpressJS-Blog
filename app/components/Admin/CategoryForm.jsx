@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Form, FormGroup, Col, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import {browserHistory } from 'react-router';
 
@@ -7,11 +9,28 @@ class CategoryForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ''
+      name: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.edit){
+      this.setState( {
+        name: nextProps.category.name
+      });
+    }
+
+  }
+
+  handleSubmit(event) {
+    this.props.onSubmit(this.state.name);
+    event.preventDefault();
+    browserHistory.push('/admin/categories');
+
   }
 
   handleChange(event) {
@@ -22,34 +41,16 @@ class CategoryForm extends Component {
     });
   }
 
-  handleSubmit(event) {
-    const myHeaders = new Headers({
-      'Content-Type': 'application/json'
-    });
-    fetch('/api/admin/categories', {
-      headers: myHeaders,
-      method: 'POST',
-      body: JSON.stringify({
-        title: this.state.title
-      })
-    })
-    .then(response => response.json());
-
-    browserHistory.push('/admin/categories');
-
-    event.preventDefault();
-  }
-
   render() {
 
     return (
       <Form id="category-form" horizontal method="POST" onSubmit={this.handleSubmit}>
-        <FormGroup controlId="title">
+        <FormGroup controlId="name">
           <Col componentClass={ControlLabel} sm={2}>
-            Titre
+            Name
           </Col>
           <Col sm={10}>
-            <FormControl type="text" placeholder="Titre" value={this.state.title} onChange={this.handleChange}/>
+            <FormControl type="text" placeholder="Titre" value={this.state.name} onChange={this.handleChange}/>
           </Col>
         </FormGroup>
 
@@ -65,5 +66,12 @@ class CategoryForm extends Component {
     );
   }
 }
+
+CategoryForm.propTypes = {
+  edit: PropTypes.bool,
+  category: PropTypes.object ,
+  onSubmit: PropTypes.func.isRequired
+
+};
 
 export default CategoryForm;

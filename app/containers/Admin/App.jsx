@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import SideBar from '../../components/Admin/Sidebar';
 import NavBar from '../../components/Admin/Navbar';
 
 class App extends Component {
 
   render(){
+    const children = this.props.children;
+
     return (
       <div>
         <NavBar />
@@ -14,7 +18,7 @@ class App extends Component {
               <SideBar />
             </div>
             <div className="col-md-9 col-lg-10 main">
-              {this.props.children}
+              {children}
             </div>
           </div>
         </div>
@@ -28,7 +32,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: App.element.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default App;

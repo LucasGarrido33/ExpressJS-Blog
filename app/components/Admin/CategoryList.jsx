@@ -1,45 +1,22 @@
-import React, { Component, PropTypes } from 'react';
-import {Link} from 'react-router';
-import {Button, Glyphicon } from 'react-bootstrap';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import CategoryListItem from './CategoryListItem';
 
 class CategoryList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      categories: []
-    };
+    this.handleDeleteCategory = this.handleDeleteCategory.bind(this);
+
   }
 
-  handleClick(category){
-
-    const myHeaders = new Headers({
-      'Content-Type': 'application/json'
-    });
-
-    fetch('/api/admin/categories',
-    {
-      method: 'DELETE',
-      headers: myHeaders,
-      body: JSON.stringify({category_id: category.id})
-    })
-    .then((response) => response.json())
-    .then((response) => console.log(response));
-
-    const newState = this.state.categories;
-    if (newState.indexOf(category) > -1) {
-      newState.splice(newState.indexOf(category), 1);
-      this.setState({data: newState});
-    }
-
+  handleDeleteCategory(category) {
+    this.props.onDeleteCategory(category);
   }
 
   render(){
-    let categories = this.props.categories.map((category) =>
-    <li key={category.id}>
-      <Link to={'/admin/category/edit/' + category.id }>{category.name}</Link>
-      <Button bsSize="small" onClick={this.handleClick.bind(this, category)}><Glyphicon glyph="glyphicon glyphicon-remove" /></Button>
-    </li>);
 
+    let categories = this.props.categories.map((category) =>  <CategoryListItem key={category.id} onHandleDeleteCategory={this.handleDeleteCategory} category={category}/>);
     return (
       <div>
         <ul>{ categories }</ul>
@@ -49,7 +26,9 @@ class CategoryList extends Component {
 }
 
 CategoryList.propTypes = {
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  onDeleteCategory: PropTypes.func.isRequired
+
 };
 
 export default CategoryList;

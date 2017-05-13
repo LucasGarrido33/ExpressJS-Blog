@@ -15,6 +15,7 @@ const session = require('./config/session');
 
 const index = require('./routes/index');
 const post = require('./routes/post');
+const category = require('./routes/category');
 const admin = require('./routes/admin');
 
 const app = express();
@@ -26,7 +27,11 @@ app.use(logger('dev'));
 
 app.use('/api/', index);
 app.use('/api/post', post);
+app.use('/api/category', category);
 app.use('/api/admin', admin);
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 //setup app rendering react front end
 setup(app, {
@@ -43,8 +48,6 @@ else {
   // session.cookie.secure = true; // serve secure cookies
 }
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'uploads')));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

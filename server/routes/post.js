@@ -2,17 +2,24 @@ var express = require('express');
 var router = express.Router();
 let fs = require('fs');
 let Post = require('../models/post');
+let Image = require('../models/image');
 
 
 router.param('post_id', function(req, res, next, id) {
-
   // try to get the post details from the Post model and attach it to the request object
   Post.find(id).then(function(post) {
     if (post) {
       req.post = post;
-      next();
+      return Image.findByPost(id);
     } else {
       next(new Error('Failed to load post'));
+    }
+  }).then((images) => {
+    if(images){
+      req.post.addImages(images);
+      next();
+    } else {
+      next(new Error('Failed to load images'));
     }
   }).catch(next);
 });
@@ -28,10 +35,9 @@ router.route('/:post_id([0-9]{1,3})')
   res.json(req.post);
 })
 .put(function(req, res, next) {
-  // just an example of maybe updating the user
-  req.user.name = req.params.name;
-  // save user ... etc
-  res.json(req.user);
+  req.post.title = req.post.title;
+
+  Post.update(req.post).then(result => res.json(result)).catch(next);
 })
 .delete(function(req, res, next) {
   next(new Error('not implemented'));
