@@ -7,20 +7,17 @@ import {Button, Glyphicon } from 'react-bootstrap';
 class CategoryListElement extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      category: this.props.category
-    };
     this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
   }
 
   handleDeleteButtonClick(){
-    this.props.onHandleDeleteCategory(this.state.category);
+    this.props.onHandleDeleteCategory(this.props.category);
   }
 
   render(){
     return (
       <li>
-        <Link to={'/admin/category/edit/' + this.state.category.id}>{this.state.category.name}</Link>
+        <Link to={'/admin/category/edit/' + this.props.category.id}>{this.props.category.name}</Link>
         <Button bsSize="small" onClick={this.handleDeleteButtonClick}><Glyphicon glyph="glyphicon glyphicon-remove" /></Button>
       </li>
     );

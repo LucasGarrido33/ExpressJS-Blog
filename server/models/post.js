@@ -1,6 +1,7 @@
 
 let connection = require('../config/connection');
 let Category = require('../models/category');
+let Image = require('../models/image');
 
 class Post {
 
@@ -64,14 +65,21 @@ class Post {
   static all(){
     return new Promise(
       function (resolve, reject) {
-        const options = {sql:'SELECT * FROM post INNER JOIN category ON post.category_id = category.id', nestTables: true};
+        const options = {sql:'SELECT * FROM post INNER JOIN category ON post.category_id = category.id; SELECT * from post_image', nestTables: true};
         connection.query(options,(error, results, fields) => {
           if(error){
             return reject(error);
           }
           resolve(
-            results.map(
-              (row) => new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail_path, new Category(row.category.id, row.category.name))));
+            results[0].map(
+              (row) => {
+                const images = results[1].filter((row2) => row2.post_image.post_id === row.post.id).map((image) => new Image(image.post_image.id, image.post_image.path));
+                const post = new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail_path, new Category(row.category.id, row.category.name));
+                post.addImages(images);
+                return post;
+              }
+            )
+          );
         });
       }
     );

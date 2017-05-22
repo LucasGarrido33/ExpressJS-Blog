@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
 import CategoryForm from '../../components/Admin/CategoryForm';
+import {connect} from 'react-redux';
+import {createCategory} from '../../actions/categoryActions';
 
 class NewCategory extends Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      category: {
+        name: ''
+      }
+    };
+    this.updateCategoryState = this.updateCategoryState.bind(this);
 
   }
 
-  handleSubmit(name) {
-
-    const myHeaders = new Headers({
-      'Content-Type': 'application/json'
-    });
-    fetch('/api/admin/categories', {
-      headers: myHeaders,
-      method: 'POST',
-      body: JSON.stringify({
-        name: name
-      })
-    })
-    .then(response => response.json());
-
+  updateCategoryState(event) {
+    const field = event.target.name;
+    const category = this.state.category;
+    category[field] = event.target.value;
+    return this.setState({category: category});
   }
 
   render() {
-
     return (
-      <CategoryForm onSubmit={this.handleSubmit} />
+      <CategoryForm onChange={this.updateCategoryState} onSubmit={this.props.onCreateClick} category={this.state.category}/>
     );
   }
 }
 
-export default NewCategory;
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      onCreateClick: (category) => {
+        dispatch(createCategory(category));
+      }
+    };
+  };
+
+export default connect(null, mapDispatchToProps)(NewCategory);

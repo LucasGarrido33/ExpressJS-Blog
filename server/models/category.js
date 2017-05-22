@@ -28,7 +28,7 @@ class Category {
           if(error){
             return reject(error);
           }
-          resolve(result);
+          resolve(new Category(result.insertId, name));
         });
       }
     );
@@ -73,7 +73,7 @@ class Category {
           if(error){
             return reject(error);
           }
-          resolve(result);
+          resolve(category);
         });
       }
     );

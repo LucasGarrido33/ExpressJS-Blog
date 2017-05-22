@@ -1,44 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { Form, FormGroup, Col, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import {browserHistory } from 'react-router';
-
 
 class CategoryForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: ''
-    };
-
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.edit){
-      this.setState( {
-        name: nextProps.category.name
-      });
-    }
 
   }
 
   handleSubmit(event) {
-    this.props.onSubmit(this.state.name);
     event.preventDefault();
-    browserHistory.push('/admin/categories');
-
-  }
-
-  handleChange(event) {
-    const target = event.target;
-    const name = target.id;
-    this.setState({
-      [name]: target.value
-    });
+    this.props.onSubmit(this.props.category);
   }
 
   render() {
@@ -50,7 +23,7 @@ class CategoryForm extends Component {
             Name
           </Col>
           <Col sm={10}>
-            <FormControl type="text" placeholder="Titre" value={this.state.name} onChange={this.handleChange}/>
+            <FormControl name="name" type="text" placeholder="Titre" value={this.props.category.name} onChange={this.props.onChange}/>
           </Col>
         </FormGroup>
 

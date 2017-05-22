@@ -13,7 +13,7 @@ import EditCategory from '../containers/Admin/EditCategory';
 import {Route, IndexRoute} from 'react-router';
 
 const routes = (
-    <Route path="admin" component={App} >
+    <Route path="admin"  onEnter={requireAuth} component={App} >
       <IndexRoute component={Home} />
       <Route path="posts" component={Posts}/>
       <Route path="post/create" component={NewPost}/>
@@ -24,5 +24,14 @@ const routes = (
 
     </Route>
 );
+
+function requireAuth(nextState, replace) {
+  if (!sessionStorage.jwt) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+}
 
 export default routes;

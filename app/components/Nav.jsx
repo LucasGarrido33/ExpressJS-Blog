@@ -10,6 +10,7 @@ class Nav extends Component {
   render(){
     return (
       <ul className="list-unstyled">
+        <li><Link to="/login">LOGIN</Link></li>
         <li><Link to="/about"><div className="circle orange">ABOUT</div></Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="instagram"><img className="img-fluid" src={insta_icon}></img></Link></li>

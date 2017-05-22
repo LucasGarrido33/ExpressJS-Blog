@@ -11,24 +11,29 @@ const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const serveStatic = require('serve-static');
 const flash = require('express-flash');
-const session = require('./config/session');
+// const session = require('./config/session');
+var jwt = require('express-jwt');
+
 
 const index = require('./routes/index');
-const post = require('./routes/post');
-const category = require('./routes/category');
+const posts = require('./routes/posts');
+const categories = require('./routes/categories');
 const admin = require('./routes/admin');
 
 const app = express();
 
-app.use(session);
+// app.use(session);
 app.use(cookieParser());
 app.use(flash());
 app.use(logger('dev'));
 
+
 app.use('/api/', index);
-app.use('/api/post', post);
-app.use('/api/category', category);
-app.use('/api/admin', admin);
+app.use('/api/posts', posts);
+app.use('/api/categories', categories);
+
+// app.use('/api/admin', jwt({secret: 'shhhhh'}));
+// app.use('/api/admin', admin);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
@@ -44,7 +49,6 @@ if (isDeveloping) {
 }
 else {
   app.set('trust proxy', 1);
-
   // session.cookie.secure = true; // serve secure cookies
 }
 
