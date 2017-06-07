@@ -9,14 +9,12 @@ const categories = (state = [], action) => {
       return action.categories;
 
     case types.CREATE_CATEGORY_SUCCESS:
-      browserHistory.push('/admin/categories');
       return [
         ...state.filter(category => category.id !== action.category.id),
         Object.assign({}, action.category)
       ];
 
     case types.UPDATE_CATEGORY_SUCCESS:
-      browserHistory.push('/admin/categories');
       return [
         ...state.filter(category => category.id !== action.category.id),
         Object.assign({}, action.category)

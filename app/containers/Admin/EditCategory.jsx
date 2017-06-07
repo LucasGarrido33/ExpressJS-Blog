@@ -2,34 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {updateCategory} from '../../actions/categoryActions';
+import {browserHistory } from 'react-router';
 
 import CategoryForm from '../../components/Admin/CategoryForm';
 
 class EditCategory extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      category: this.props.category
-    };
-    this.updateCategoryState = this.updateCategoryState.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.category.id != nextProps.category.id) {
-      this.setState({category: nextProps.category});
-    }
-  }
-
-  updateCategoryState(event) {
-    const field = event.target.name;
-    const category = this.state.category;
-    category[field] = event.target.value;
-    return this.setState({category: category});
   }
 
     render() {
       return (
-        <CategoryForm edit={true} onSubmit={this.props.onEditClick } onChange={this.updateCategoryState} category={this.props.category}/>
+        <CategoryForm edit={true} onSubmit={this.props.onEditClick } initialValues={this.props.category}/>
       );
     }
   }
@@ -53,6 +37,7 @@ class EditCategory extends Component {
     return {
       onEditClick: (category) => {
         dispatch(updateCategory(category));
+        browserHistory.push('/admin/categories');
       }
     };
   };
