@@ -72,6 +72,7 @@ PostForm.propTypes = {
   categories: PropTypes.array ,
   onSubmit: PropTypes.func.isRequired
 };
+
 const renderField = ({
   input,
   label,
