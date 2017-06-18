@@ -1,0 +1,22 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "host": "",
+    "user": "",
+    "password": "",
+    "database": ""
+  },
+
+  "test": {
+    "driver": "mysql",
+    "user": "",
+    "password": ""
+  },
+
+  "prod": {
+    "driver": "mysql",
+    "user": "",
+    "password": ""
+  }
+
+}
