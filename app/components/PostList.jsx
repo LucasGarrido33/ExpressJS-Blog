@@ -8,12 +8,18 @@ class PostList extends Component {
     super(props);
   }
   render(){
-    const posts = this.props.posts.map((post) => <li key={post.id}><Link to={'/post/' + post.id} >{post.title}</Link></li>);
+    const posts = this.props.posts.map((post) => <Link to={'/post/' + post.id} >{<img src={require('../../uploads/' + post['thumbnail'])}/> }</Link>);
 
     return (
-      <div>
-        <ul>{ posts }</ul>
+      <div className="row gallery">
+        <div className="col-md-6">
+          { posts.filter((e, i) => i % 2) }
+        </div>
+        <div className="col-md-6">
+          { posts.filter((e, i) => !(i % 2)) }
+        </div>
       </div>
+
     );
   }
 }

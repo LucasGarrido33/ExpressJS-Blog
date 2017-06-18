@@ -34,7 +34,7 @@ exports.post_detail = function(req, res, next) {
 
 // Handle post delete
 exports.post_delete = function(req, res, next) {
-  Post.delete(req.body.post_id)
+  Post.delete(req.post.id)
   .then(result => {
     res.json(result);
   }).catch(next);
@@ -42,28 +42,30 @@ exports.post_delete = function(req, res, next) {
 
 // Handle post update
 exports.post_update = function(req, res, next) {
-  req.post.title = req.post.title;
+  req.post.title = req.body.title;
+  req.post.content = req.body.content;
+  req.post.category = req.body.category;
 
   Post.update(req.post).then(result => res.json(result)).catch(next);
 };
 
 // Handle POST create
 exports.post_create = function(req, res, next) {
-
     req.checkBody('title', 'field is empty').notEmpty();
     req.checkBody('content', 'field is empty').notEmpty();
     req.checkBody('category', 'field is empty').notEmpty();
-    req.checkBody('images', 'field is empty').notEmpty();
 
     req.getValidationResult().then(function(result) {
       if (!result.isEmpty()) {
         res.status(400).json(result.array());
         return;
       }
-      Post.create(req.body.title, req.body.content, req.body.category)
-      .then(result => Post.addImages(req.files.map(item => [result.insertId, item.filename])))
-      .then(result => {
-        res.json(result);
-      }).catch(next);
-    });
+
+      return Post.create(req.body.title, req.body.content, req.file.filename, req.body.category);
+
+    })
+    // .then(result => Post.addImages(req.files.map(item => [result.insertId, item.filename])))
+    .then(result => res.json(result) )
+    .catch(next);
+
 };

@@ -6,19 +6,19 @@ class PostApi {
     .then((response) => response.json()).catch(error => error);
   }
 
-  static editPost(post){
+  static updatePost(post){
     let data = new FormData();
-    for (const file in post.images) {
-      data.append('images', post.images[file]);
-    }
+    // for (const file in post.images) {
+    //   data.append('images', post.images[file]);
+    // }
     data.append('title', post.title);
     data.append('content', post.content);
     data.append('category', post.category);
-    data.append('_csrf', this.state.csrfToken);
+    data.append('thumbnail', post.thumbnail[0]);
 
-    return fetch('/api/admin/post', {
+    return fetch(`/api/posts/${post.id}`, {
       credentials: 'same-origin',
-      method: 'POST',
+      method: 'PUT',
       body: data
     })
     .then(response => response.json()).catch((error) => error);
@@ -38,17 +38,17 @@ class PostApi {
   }
 
   static createPost(post){
-
     let data = new FormData();
-    for (const file in post.images) {
-      data.append('images', post.images[file]);
-    }
+    // for (const file in post.images) {
+    //   data.append('images', post.images[file]);
+    // }
+
     data.append('title', post.title);
     data.append('content', post.content);
+    data.append('thumbnail', post.thumbnail[0]);
     data.append('category', post.category);
-    data.append('_csrf', this.state.csrfToken);
 
-    fetch('/api/admin/post', {
+    return fetch('/api/posts', {
       credentials: 'same-origin',
       method: 'POST',
       body: data

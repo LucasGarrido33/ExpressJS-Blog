@@ -1,58 +1,39 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import PostForm from '../../components/Admin/PostForm';
 import {browserHistory } from 'react-router';
+import {updatePost} from '../../actions/postActions';
 
 class EditPost extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      post: {},
-      categories: [],
-      csrfToken: ''
-    };
-  }
-
-  componentDidMount() {
-    fetch(`/api/admin/post/${this.props.params.postId}`,
-      {credentials: 'same-origin'})
-      .then((response) => response.json())
-      .then(result => this.setState(
-        {
-          post: result.post,
-          categories: result.categories,
-          csrfToken: result.csrfToken
-        }
-      )
-    );
-  }
-
-  handleSubmit(title, content, category, images) {
-    let data = new FormData();
-    for (const file in images) {
-      data.append('images', images[file]);
-    }
-    data.append('title', title);
-    data.append('content', content);
-    data.append('category', category);
-    data.append('_csrf', this.state.csrfToken);
-
-    fetch('/api/admin/post', {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: data
-    })
-    .then(response => response.json())
-    .then(response => {
-      this.setState({validationErrors: response});
-      browserHistory.push('/admin/posts');
-    });
   }
 
   render() {
     return (
-      <PostForm edit={true} csrfToken={this.state.csrfToken} post={this.state.post} categories={this.state.categories}/>
+      <PostForm edit={true} initialValues={this.props.post} categories={this.props.categories} onSubmit={this.props.onEditClick}/>
     );
   }
 }
 
-export default EditPost;
+const mapStateToProps = (state, ownProps) => {
+  let post = {};
+  const postId = ownProps.params.postId;
+  if (state.posts.length > 0) {
+    const tmpPost = state.posts.find(post => post.id == postId);
+    post = Object.assign({}, tmpPost, {category: tmpPost.category.id});
+  }
+  return {post: post, categories: state.categories};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onEditClick: (post) => {
+      dispatch(updatePost(post));
+      browserHistory.push('/admin/posts');
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditPost);

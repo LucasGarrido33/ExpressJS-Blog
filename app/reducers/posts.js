@@ -9,7 +9,6 @@ const posts = (state = [], action) => {
       return action.posts;
 
     case types.CREATE_POST_SUCCESS:
-      browserHistory.push('/admin/posts');
       return [
         ...state.filter(post => post.id !== action.post.id),
         Object.assign({}, action.post)

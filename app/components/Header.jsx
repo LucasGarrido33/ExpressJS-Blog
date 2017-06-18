@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { IndexLink } from 'react-router';
+import { Link } from 'react-router';
 
 import logo from '../images/honey_titre.png';
 
@@ -11,15 +12,14 @@ class Header extends Component {
           <div className="col-md-4">
           </div>
           <div className="col-md-4">
-            <IndexLink to="/"><img id="main-logo" className="img-responsive center-block" alt="logo" src={logo} width="400"></img></IndexLink>
-            <div className="text-center">
-              <h4>ILLUSTRATION</h4>
-              <h4>GRAPHISME</h4>
-              <p>
-                «Bienvenue sur mon site ! Vous y trouverez mes projets universitaires, personnels ou professionnels qui forgent mon identité et mon univers.
-                N'hésitez pas à me contacter et a aller voir mon CV en ligne pour en apprendre plus sur moi ! » H.
-              </p>
-            </div>
+            <IndexLink to="/"><img id="main-logo" className="img-responsive center-block" alt="logo" src={logo} ></img></IndexLink>
+            <ul className="list-inline">
+              {/* <li><Link to="/login">LOGIN</Link></li> */}
+              <li><Link to="/">ILLUSTRATION</Link></li>
+              <li><Link to="/about">ABOUT</Link></li>
+              <li><Link to="/contact">CONTACT</Link></li>
+              <li><Link to="/shop">SHOP</Link></li>
+            </ul>
           </div>
           <div className="col-md-4">
           </div>

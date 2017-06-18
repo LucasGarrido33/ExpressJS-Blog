@@ -16,14 +16,14 @@ exports.setup = function(options, seedLink) {
 
 exports.up = function(db, callback) {
 	db.createTable('post', {
-    id: { 
+    id: {
     	type: 'int',
      	primaryKey: true,
      	autoIncrement: true,
      },
     title: 'string',
     content: 'string',
-    thumbnail_path: 'string',
+    thumbnail: 'string',
     category_id: {
       type: 'int',
       notNull: true,

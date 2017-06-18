@@ -9,13 +9,15 @@ import {deletePost} from '../../actions/postActions';
     }
 
     render(){
+      const posts = this.props.posts;
+
       return (
-        <PostList posts={this.props.posts} onDeletePost={this.props.onDeleteClick}/>
+        <PostList posts={posts} onDeletePost={this.props.onDeleteClick}/>
       );
     }
   }
 
-  const mapStateToProps = (state, ownProps) => {
+  const mapStateToProps = (state) => {
     return {
       posts: state.posts
     };

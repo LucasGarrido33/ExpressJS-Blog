@@ -10,14 +10,11 @@ class Nav extends Component {
   render(){
     return (
       <ul className="list-unstyled">
-        <li><Link to="/login">LOGIN</Link></li>
-        <li><Link to="/about"><div className="circle orange">ABOUT</div></Link></li>
-        <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="instagram"><img className="img-fluid" src={insta_icon}></img></Link></li>
-        <li><Link to="tumblr"><img className="img-fluid" src={tumblr_icon}></img></Link></li>
-        <li><Link to="facebook"><img className="img-fluid" src={facebook_icon}></img></Link></li>
-        <li><Link to="pinterest"><img className="img-fluid" src={pint_icon}></img></Link></li>
-        <li><Link to="youtube"><img className="img-fluid" src={youtube_icon}></img></Link></li>
+        <li><a href="https://www.instagram.com/opheliehoney/"><img className="img-fluid" src={insta_icon}></img></a></li>
+        <li><a href="https://honeysupercat.tumblr.com/"><img className="img-fluid" src={tumblr_icon}></img></a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=100009302740584"><img className="img-fluid" src={facebook_icon}></img></a></li>
+        <li><a href="https://fr.pinterest.com/ophelieortal/"><img className="img-fluid" src={pint_icon}></img></a></li>
+        <li><a href="https://www.linkedin.com/in/ophelie-ortal-15a29164/"><img className="img-fluid" src={youtube_icon}></img></a></li>
       </ul>
     );
   }

@@ -5,11 +5,11 @@ let Image = require('../models/image');
 
 class Post {
 
-  constructor(id, title, content, thumbnail_path, category) {
+  constructor(id, title, content, thumbnail, category) {
     this.id = id;
     this.title = title;
     this.content = content;
-    this.thumbnail_path = thumbnail_path;
+    this.thumbnail = thumbnail;
     this.category = category;
     this.images = [];
   }
@@ -18,10 +18,10 @@ class Post {
     this.images = images;
   }
 
-  static create (title, content, category_id){
+  static create (title, content, thumbnail, category_id){
     return new Promise(
       function(resolve, reject){
-        connection.query('INSERT INTO post SET title = ?, content = ?, thumbnail_path = ?, category_id = ?', [title, content, 'test', category_id], (error, result) => {
+        connection.query('INSERT INTO post SET title = ?, content = ?, thumbnail = ?, category_id = ?', [title, content, thumbnail, category_id], (error, result) => {
           if(error){
             return reject(error);
           }
@@ -57,10 +57,19 @@ class Post {
     );
   }
 
-  static update(){
+  static update(post){
+    return new Promise(
+      function (resolve, reject) {
+        connection.query('UPDATE post SET title = ?, content = ?, thumbnail = ?, category_id = ? WHERE id = ? ;', [post.title, post.content, post.thumbnail, post.category, post.id], (error, result) => {
+          if(error){
+            return reject(error);
+          }
+          resolve(post);
+        });
+      }
+    );
 
-
-  }
+}
 
   static all(){
     return new Promise(
@@ -74,7 +83,7 @@ class Post {
             results[0].map(
               (row) => {
                 const images = results[1].filter((row2) => row2.post_image.post_id === row.post.id).map((image) => new Image(image.post_image.id, image.post_image.path));
-                const post = new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail_path, new Category(row.category.id, row.category.name));
+                const post = new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail, new Category(row.category.id, row.category.name));
                 post.addImages(images);
                 return post;
               }
@@ -97,7 +106,7 @@ class Post {
           if(results.length){
             const row = results[0];
             const category = new Category(row.category.id, row.category.name);
-            post = new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail_path, category);
+            post = new Post(row.post.id, row.post.title, row.post.content, row.post.thumbnail, category);
           }
           resolve(post);
         });

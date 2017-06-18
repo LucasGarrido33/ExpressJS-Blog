@@ -1,5 +1,4 @@
 import * as types from '../actions/actionTypes';
-import {browserHistory } from 'react-router';
 
 // takes the current state and an action and it returns the next state
 const categories = (state = [], action) => {

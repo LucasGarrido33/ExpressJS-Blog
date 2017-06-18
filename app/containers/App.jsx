@@ -13,7 +13,7 @@ class App extends Component {
         <Header />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-10">
+            <div className="col-md-offset-2 col-md-8">
               {children}
             </div>
             <div className="social-list col-md-2">

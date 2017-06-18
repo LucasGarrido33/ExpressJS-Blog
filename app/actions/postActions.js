@@ -62,7 +62,7 @@ export const deletePost = (post) => {
 export const updatePost = (post) => {
   return function(dispatch) {
     return postApi.updatePost(post).then((responsePost) => {
-      dispatch(deletePostSuccess(responsePost));
+      dispatch(updatePostSuccess(responsePost));
     }).catch(error => {
       throw (error);
     });

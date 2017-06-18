@@ -13,10 +13,9 @@ class PostInfo extends Component {
 
     return (
       <div>
-        <p>{this.props.post['id']}</p>
-        <p>{this.props.post['title']}</p>
+        <h1>{this.props.post['title']}</h1>
         <p>{this.props.post['content']}</p>
-        <p>{this.props.post['thumbnail_path']}</p>
+        <img src={require('../../uploads/' + this.props.post['thumbnail'])} width='200px'/>
         {images}
         <div><button onClick={browserHistory.goBack}>Go Back</button></div>
       </div>

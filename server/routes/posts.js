@@ -24,14 +24,14 @@ router.param('post_id', post_controller.post_find);
 
 router.get('/', post_controller.post_list);
 
-router.post('/', upload.array('images', 12), post_controller.post_create);
+router.post('/', upload.single('thumbnail'), post_controller.post_create);
 
 router.route('/:post_id([0-9]{1,3})')
 .all(function(req, res, next) {
   next();
 })
 .get(post_controller.post_detail)
-.put(post_controller.post_update)
+.put(upload.single('thumbnail'), post_controller.post_update)
 .delete(post_controller.post_delete);
 
 
