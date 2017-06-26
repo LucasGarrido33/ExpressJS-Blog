@@ -13,7 +13,7 @@ router.param('category_id', category_controller.category_find);
 
 router.get('/', category_controller.category_list);
 
-router.post('/', jsonParser, jwt({secret: 'shhhhh'}), category_controller.category_create);
+router.post('/', jsonParser, jwt({secret: process.env.JWT_SECRET}), category_controller.category_create);
 
 
 router.route('/:category_id([0-9]{1,3})')

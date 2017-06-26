@@ -9,7 +9,8 @@ const plugins = [
   new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
   new webpack.NoEmitOnErrorsPlugin(),
   new HtmlWebpackPlugin({
-    template: './app/public/index.html'
+    template: './app/public/index.html',
+    favicon: './app/images/favicon.png'
   })
 ];
 

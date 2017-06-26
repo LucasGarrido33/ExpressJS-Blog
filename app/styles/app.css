@@ -1,25 +1,118 @@
+@font-face {
+  font-family: 'CaviarDreams';
+  src: url('/CaviarDreams.ttf');
+}
+
+@font-face {
+  font-family: "CaviarDreams";
+  font-weight: bold;
+  src: url('/CaviarDreams_Bold.ttf');
+}
+
+body{
+  font-family: "CaviarDreams";
+  padding-bottom: 25px;
+}
 
 header {
   padding-top:20px;
-  margin-bottom:60px;
-
+  margin-bottom:10px;
   text-align: center;
+}
 
+.header-nav {
+  margin-bottom: 55px;
 }
+
+
 .gallery img {
-    width: 100%;
+  width: 100%;
+  height:auto;
 }
+
+.thumbnail-container {
+  padding: 13px 13px 13px 13px;
+}
+
+.thumbnail-container:hover {
+  cursor:pointer;
+}
+
 header a {
   color:black;
-  font-size: 1.7em;
+  font-size: 1.4em;
 }
+
+header .list-inline{
+  display:block;
+}
+
+header .list-inline li {
+  display:inline-block;
+  padding: 0;
+}
+
+header .list-inline li:not(:last-child):after{
+  content:'•';
+  margin:0 10px;
+}
+
 #main-logo  {
-  margin-bottom: 2rem;
+  margin-bottom:20px;
 }
+
 .social-list img {
-  width: 40px;
+  width: 45px;
 }
 
 .social-list li {
   margin-top:10px;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/*image hover effect*/
+
+.column#caption {
+  position: relative;
+}
+
+.column#caption .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.column#caption .text h1 {
+  margin: 0;
+  color: black;
+}
+
+.column#caption:hover .text {
+  opacity: 1;
+}
+.column#caption:hover img {
+  -webkit-filter: opacity(30%);
+}
+
+/*dropzone*/
+
+#dropzone {
+  font: bold 24px/200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#dropzone img {
+  border-radius: 10px;
+  vertical-align: middle;
+  max-width: 95%;
+  max-height: 95%;
 }

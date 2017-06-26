@@ -21,7 +21,6 @@ class PostInfo extends Component {
       </div>
     );
   }
-
 }
 
 PostInfo.propTypes = {

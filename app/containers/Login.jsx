@@ -1,56 +1,56 @@
 import React, { Component } from 'react';
 import {logInUser} from '../actions/sessionActions';
-
+import LoginForm from '../components/Admin/LoginForm';
 import {connect} from 'react-redux';
+import { SubmissionError } from 'redux-form';
+import { browserHistory } from 'react-router';
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {credentials: {password: ''}};
-    this.onChange = this.onChange.bind(this);
-    this.onSave = this.onSave.bind(this);
   }
 
-  onChange(event) {
-    const field = event.target.name;
-    const credentials = this.state.credentials;
-    credentials[field] = event.target.value;
-    return this.setState({credentials: credentials});
+  componentDidMount() {
+    if (this.props.loggedIn) {
+      browserHistory.push('/admin');
+    }
+    document.body.classList.toggle('login');
   }
 
-  onSave(event) {
-    event.preventDefault();
-    this.props.logInUser(this.state.credentials);
+  componentWillUnmount() {
+    document.body.classList.remove('login');
   }
 
   render() {
     return (
-      <div>
-        <form>
-          <input
-            name="password"
-            label="password"
-            type="password"
-            value={this.state.credentials.password}
-            onChange={this.onChange}/>
-
-          <input
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.onSave}/>
-        </form>
-
+      <div className="container">
+        <div className="row">
+          <div className="test">
+            <LoginForm onSubmit={this.props.logInUser}/>
+          </div>
+        </div>
       </div>
-        );
-      }
-    }
+    );
+  }
+}
 
-    const mapDispatchToProps = (dispatch) => {
-      return {
-        logInUser: (credentials) => {
-          dispatch(logInUser(credentials));
+const mapStateToProps = (state) => {
+  return {loggedIn : state.session};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logInUser: (credentials) => {
+      return dispatch(logInUser(credentials))
+      .then(
+        () => { browserHistory.push('/admin'); })
+        .catch((error) => {
+          throw new SubmissionError({
+            password: error.message,
+            _error: 'Login failed!'});
+          });
         }
       };
     };
 
-    export default connect(null, mapDispatchToProps)(Login);
+    export default connect(mapStateToProps, mapDispatchToProps)(Login);

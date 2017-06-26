@@ -4,6 +4,12 @@ import routes from './routers/routes';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/app.css';
+import './styles/login.css';
+
+import './styles/fonts/CaviarDreams.ttf';
+import './styles/fonts/CaviarDreams_Bold.ttf';
+
+
 
 import {Router, browserHistory} from 'react-router';
 import { Provider } from 'react-redux';

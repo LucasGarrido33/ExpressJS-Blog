@@ -4,6 +4,7 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {connect} from 'react-redux';
 import {logOutUser} from '../../actions/sessionActions';
+import {browserHistory } from 'react-router';
 
 class NavBar extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class NavBar extends Component {
   logOut(event) {
   event.preventDefault();
   this.props.logOutUser();
+  browserHistory.push('/');
+
 }
 
   render(){
@@ -25,11 +28,7 @@ class NavBar extends Component {
           </Navbar.Brand>
         </Navbar.Header>
           <Nav pullRight>
-            <LinkContainer to={{ pathname: '/'}}>
-              <NavItem eventKey={1}>Link Right</NavItem>
-            </LinkContainer>
             <NavItem eventKey={2} href="/logout" onClick={this.logOut}>log out</NavItem>
-
           </Nav>
       </Navbar>
     );

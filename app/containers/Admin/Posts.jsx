@@ -26,7 +26,7 @@ import {deletePost} from '../../actions/postActions';
   const mapDispatchToProps = (dispatch) => {
     return {
       onDeleteClick: (post) => {
-        dispatch(deletePost(post));
+        return dispatch(deletePost(post));
       }
     };
   };

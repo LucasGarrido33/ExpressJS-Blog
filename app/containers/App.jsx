@@ -13,10 +13,10 @@ class App extends Component {
         <Header />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-offset-2 col-md-8">
+            <div className="col-md-offset-1 col-md-10">
               {children}
             </div>
-            <div className="social-list col-md-2">
+            <div className="social-list col-md-1">
               <Nav />
             </div>
           </div>
