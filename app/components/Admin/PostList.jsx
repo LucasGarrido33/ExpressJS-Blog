@@ -15,11 +15,12 @@ class PostList extends Component {
 
   render(){
 
-    const posts = this.props.posts.map((post) => <PostListItem onHandleDeletePost={this.handleDeletePost} post={post} key={post.id}/>);
-
+    const posts = this.props.posts.sort(function(a, b) {
+      return a.display_order - b.display_order;
+    }).map((post) => <PostListItem onHandleDeletePost={this.handleDeletePost} post={post} key={post.id}/>);
     return (
       <div>
-        <ul>{ posts }</ul>
+        <ul className="list-group">{ posts }</ul>
       </div>
     );
   }

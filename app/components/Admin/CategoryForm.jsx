@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import renderField from '../Fields/RenderField';
-import { Form, FormGroup, Col, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { addAlert } from '../../actions/alertActions';
+import {FormGroup, Col, Button } from 'react-bootstrap';
 
 class CategoryForm extends Component {
   constructor(props) {
@@ -10,15 +11,16 @@ class CategoryForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, submitting } = this.props;
+    const loading = <div><i className="fa fa-circle-o-notch fa-spin fa-fw"></i> Loading</div>;
     return (
       <form onSubmit={handleSubmit} className="form-horizontal">
         <Field label="Nom" name="name" component={renderField} type="text"/>
 
         <FormGroup>
           <Col smOffset={2} sm={10}>
-            <Button type="submit">
-              Submit
+            <Button type="submit" disabled={submitting} block bsStyle="info">
+              {submitting?loading:'Submit'}
             </Button>
           </Col>
         </FormGroup>
@@ -43,6 +45,9 @@ const validate = values => {
 CategoryForm = reduxForm({
   form: 'category', // a unique name for this form
   enableReinitialize: true,
+  onSubmitSuccess: (result, dispatch) => {
+    dispatch(addAlert('New category created'));
+  },
   validate
 })(CategoryForm);
 

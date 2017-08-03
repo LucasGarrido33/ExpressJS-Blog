@@ -15,11 +15,9 @@ class Header extends Component {
         </div>
         <div className="row header-nav">
           <ul className="list-inline">
-            {/* <li><Link to="/login">LOGIN</Link></li> */}
-            <li><Link to="/">ILLUSTRATION</Link></li>
-            <li><Link to="/about">ABOUT</Link></li>
-            <li><Link to="/contact">CONTACT</Link></li>
-            <li><Link to="/shop">SHOP</Link></li>
+            <li><IndexLink to="/" className="scale" activeClassName="active-header">ILLUSTRATION</IndexLink></li>
+            <li><Link to="/contact" className="scale" activeClassName="active-header">CONTACT</Link></li>
+            <li><Link to="/shop" className="scale" activeClassName="active-header">SHOP</Link></li>
           </ul>
         </div>
       </header>

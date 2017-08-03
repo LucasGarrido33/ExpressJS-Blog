@@ -44,7 +44,7 @@ class PostList extends Component {
     }
   );
   return (
-    <div className="row gallery">
+    <div className="gallery">
       <Lightbox
         isOpen={this.state.lightboxIsOpen}
         onClickPrev={this.gotoPrevious}

@@ -30,7 +30,7 @@ class CategoryApi {
       {
         credentials: 'same-origin',
         headers: myHeaders,
-        method: 'PUT',
+        method: 'PATCH',
         body: JSON.stringify({
           name: category.name
         })

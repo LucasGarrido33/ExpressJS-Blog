@@ -8,6 +8,7 @@ class SideBar extends Component {
         <ul className="nav flex-column pl-1">
             <li className="nav-item"><Link to="/admin" className="nav-link">Index</Link></li>
             <li className="nav-item"><Link to="/admin/posts" className="nav-link">Posts</Link></li>
+            <li className="nav-item"><Link to="/admin/posts/sort" className="nav-link">Sort Posts</Link></li>
             <li className="nav-item"><Link to="/admin/post/create" className="nav-link">New Post</Link></li>
             <li className="nav-item"><Link to="/admin/categories" className="nav-link">Categories</Link></li>
             <li className="nav-item"><Link to="/admin/category/create" className="nav-link">New category</Link></li>

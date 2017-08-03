@@ -17,17 +17,20 @@ exports.setup = function(options, seedLink) {
 exports.up = function(db, callback) {
 	db.createTable('post', {
     id: {
-    	type: 'int',
-     	primaryKey: true,
-     	autoIncrement: true,
+      type: 'int',
+      primaryKey: true,
+      autoIncrement: true
      },
     title: 'string',
     content: 'string',
     thumbnail: 'string',
+    display_order: {
+      type:'int'
+    },
     category_id: {
       type: 'int',
-      notNull: true,
-    },
+      notNull: true
+    }
 	}, callback);
 };
 

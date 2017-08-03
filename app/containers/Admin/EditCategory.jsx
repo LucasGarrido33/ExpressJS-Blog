@@ -37,7 +37,7 @@ class EditCategory extends Component {
     return {
       onEditClick: (category) => {
         dispatch(updateCategory(category));
-        browserHistory.push('/admin/categories');
+        browserHistory.push('/admin/');
       }
     };
   };

@@ -6,6 +6,21 @@ class PostApi {
     .then((response) => response.json()).catch(error => error);
   }
 
+  static sortPosts(posts){
+    const myHeaders = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return fetch('/api/posts/sort', {
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({
+        posts: posts
+      })
+    })
+    .then(response => response.json()).catch((error) => error);
+  }
+
   static updatePost(post){
     let data = new FormData();
     // for (const file in post.images) {
@@ -18,7 +33,7 @@ class PostApi {
 
     return fetch(`/api/posts/${post.id}`, {
       credentials: 'same-origin',
-      method: 'PUT',
+      method: 'PATCH',
       body: data
     })
     .then(response => response.json()).catch((error) => error);

@@ -9,8 +9,10 @@ class Contact extends Component {
         <h1>OPHELIE ORTAL</h1>
 
         <p>
-          Diplomée d’une Licence Design global de l’Université Bordeaux Montaigne,
-          je suis passionnée par l’illustration et le graphisme. Cette passion n’a jamais cessé de me suivre au quotidien,
+          Diplomée d’une Licence Design global de l’Université Bordeaux Montaigne, je suis passionnée par l’illustration et le graphisme.
+        </p>
+        <p>
+          Cette passion n’a jamais cessé de me suivre au quotidien,
           et aujourd’hui je réalise mon rêve d’en faire mon métier.
         </p>
         <p>

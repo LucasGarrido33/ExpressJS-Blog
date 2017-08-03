@@ -11,7 +11,7 @@
 
 body{
   font-family: "CaviarDreams";
-  padding-bottom: 25px;
+  min-height: 100%;
 }
 
 header {
@@ -24,6 +24,9 @@ header {
   margin-bottom: 55px;
 }
 
+.absolute-wrapper{
+    position: absolute;
+}
 
 .gallery img {
   width: 100%;
@@ -34,13 +37,15 @@ header {
   padding: 13px 13px 13px 13px;
 }
 
-.thumbnail-container:hover {
+/*.thumbnail-container:hover {
   cursor:pointer;
-}
+}*/
 
-header a {
+.header-nav li a {
+  text-decoration: none !important;
   color:black;
   font-size: 1.4em;
+  display: inline-block;
 }
 
 header .list-inline{
@@ -54,11 +59,24 @@ header .list-inline li {
 
 header .list-inline li:not(:last-child):after{
   content:'•';
-  margin:0 10px;
+  margin:0 13px;
 }
 
 #main-logo  {
   margin-bottom:20px;
+}
+.scale {
+  -webkit-transition: all 0.1s linear;
+          transition: all 0.1s linear;
+}
+
+.scale:hover {
+  -webkit-transform: scale(1.13);
+     -moz-transform: scale(1.13);
+      -ms-transform: scale(1.13);
+       -o-transform: scale(1.13);
+          transform: scale(1.13);
+
 }
 
 .social-list img {
@@ -98,21 +116,35 @@ header .list-inline li:not(:last-child):after{
 .column#caption:hover .text {
   opacity: 1;
 }
-.column#caption:hover img {
-  -webkit-filter: opacity(30%);
+
+.column#caption img {
+  cursor:pointer;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
-/*dropzone*/
-
-#dropzone {
-  font: bold 24px/200px;
-  text-align: center;
-  cursor: pointer;
+.column#caption img:hover {
+  opacity: 0.5;
 }
 
-#dropzone img {
-  border-radius: 10px;
-  vertical-align: middle;
-  max-width: 95%;
-  max-height: 95%;
+
+
+/*button */
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
 }

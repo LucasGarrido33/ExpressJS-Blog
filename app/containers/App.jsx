@@ -1,5 +1,6 @@
  import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { RouteTransition } from 'react-router-transition';
 import Header from '../components/Header';
 import Nav from '../components/Nav';
 
@@ -7,20 +8,31 @@ class App extends Component {
 
   render(){
     const children = this.props.children;
-
     return (
       <div className="container-fluid">
         <Header />
-        <div className="container-fluid">
+        {/* <div className="container-fluid"> */}
+
           <div className="row">
+
             <div className="col-md-offset-1 col-md-10">
-              {children}
+              {/* <RouteTransition
+                pathname={this.props.location.pathname}
+                atEnter={{ opacity: 0 }}
+                atLeave={{ opacity: 0 }}
+                atActive={{ opacity: 1 }}
+              > */}
+                {children}
+              {/* </RouteTransition> */}
+
             </div>
+
             <div className="social-list col-md-1">
               <Nav />
             </div>
           </div>
-        </div>
+
+        {/* </div> */}
       </div>
 
     );

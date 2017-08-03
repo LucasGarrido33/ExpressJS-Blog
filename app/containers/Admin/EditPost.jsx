@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onEditClick: (post) => {
       dispatch(updatePost(post));
-      browserHistory.push('/admin/posts');
+      browserHistory.push('/admin/');
     }
   };
 };

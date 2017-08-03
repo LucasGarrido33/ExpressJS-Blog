@@ -28,6 +28,12 @@ export const updatePostSuccess = (post) => {
   };
 };
 
+export const sortPostsSuccess = (posts) => {
+  return {
+    type: types.SORT_POSTS_SUCCESS,
+    posts
+  };
+};
 
 export const loadPosts = () => {
   return function(dispatch) {
@@ -41,8 +47,8 @@ export const loadPosts = () => {
 
 export const createPost = (post) => {
   return function(dispatch) {
-    return postApi.createPost(post).then(() => {
-      dispatch(createPostSuccess(post));
+    return postApi.createPost(post).then((responsePost) => {
+      dispatch(createPostSuccess(responsePost));
     }).catch(error => {
       throw (error);
     });
@@ -66,5 +72,14 @@ export const updatePost = (post) => {
     }).catch(error => {
       throw (error);
     });
+  };
+};
+
+export const sortPosts = (posts) => {
+  return function(dispatch) {
+    return postApi.sortPosts(posts).then(() => {
+      dispatch(sortPostsSuccess(posts));
+    });
+
   };
 };

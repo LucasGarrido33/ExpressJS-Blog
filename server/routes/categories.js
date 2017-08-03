@@ -21,6 +21,6 @@ router.route('/:category_id([0-9]{1,3})')
   next();
 })
 .get(category_controller.category_detail)
-.put(jsonParser, category_controller.category_update)
+.patch(jsonParser, category_controller.category_update)
 .delete(category_controller.category_delete);
 module.exports = router;

@@ -13,10 +13,9 @@ class NavBar extends Component {
   }
 
   logOut(event) {
-  event.preventDefault();
-  this.props.logOutUser();
-  browserHistory.push('/');
-
+    event.preventDefault();
+    this.props.logOutUser();
+    browserHistory.push('/');
 }
 
   render(){
@@ -24,11 +23,11 @@ class NavBar extends Component {
       <Navbar fluid >
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Honey</Link>
+            <Link to="/">Honey Dashboard</Link>
           </Navbar.Brand>
         </Navbar.Header>
           <Nav pullRight>
-            <NavItem eventKey={2} href="/logout" onClick={this.logOut}>log out</NavItem>
+            <NavItem eventKey={2} href="/logout" onClick={this.logOut}>Logout</NavItem>
           </Nav>
       </Navbar>
     );

@@ -14,7 +14,7 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function (db, callback)
+exports.up = function(db, callback)
 {
   db.addForeignKey('post', 'category', 'post_category_id_foreign',
   {
@@ -27,7 +27,7 @@ exports.up = function (db, callback)
 };
 
 
-exports.down = function (db, callback)
+exports.down = function(db, callback)
 {
   db.removeForeignKey('post', 'post_category_id_foreign', callback);
 };

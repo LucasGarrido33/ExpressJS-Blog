@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {Link} from 'react-router';
-import {Button, Glyphicon } from 'react-bootstrap';
+import {Button, Glyphicon , ButtonToolbar} from 'react-bootstrap';
 
 class CategoryListElement extends Component {
   constructor(props) {
@@ -16,9 +16,15 @@ class CategoryListElement extends Component {
 
   render(){
     return (
-      <li>
-        <Link to={'/admin/category/edit/' + this.props.category.id}>{this.props.category.name}</Link>
-        <Button bsSize="small" onClick={this.handleDeleteButtonClick}><Glyphicon glyph="glyphicon glyphicon-remove" /></Button>
+      <li className="list-group-item">
+        <span className="card-list-title"><h4>{this.props.category.name}</h4></span>
+        <ButtonToolbar>
+
+        <Link to={'/admin/category/edit/' + this.props.category.id}>
+          <Button bsSize="small">Edit <Glyphicon glyph="glyphicon glyphicon-edit"/></Button>
+        </Link>
+        <Button bsSize="small" bsStyle="danger" onClick={this.handleDeleteButtonClick}>Remove <Glyphicon glyph="glyphicon glyphicon-remove"/></Button>
+      </ButtonToolbar>
       </li>
     );
   }

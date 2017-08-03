@@ -3,7 +3,7 @@ let Category = require('../models/category');
 // Display list of all categories
 exports.category_list = function(req, res, next) {
   Category.all().then(categories => {
-    res.json(categories);
+    res.status(200).json(categories);
   }).catch(next);
 };
 
@@ -21,14 +21,14 @@ exports.category_find = function(req, res, next, id) {
 
 // Display detail page for a specific category
 exports.category_detail = function(req, res, next) {
-  res.json(req.category);
+  res.status(200).json(req.category);
 };
 
 // Handle category delete
 exports.category_delete = function(req, res, next) {
   Category.delete(req.category.id)
   .then(result => {
-    res.json(result);
+    res.status(200).json(result);
   })
   .catch(next);
 };
@@ -36,7 +36,7 @@ exports.category_delete = function(req, res, next) {
 // Handle category update
 exports.category_update = function(req, res, next) {
   req.category.name = req.body.name;
-  Category.update(req.category).then(result => res.json(result)).catch(next);
+  Category.update(req.category).then(result => res.status(202).json(result)).catch(next);
 };
 
 // Handle category create
@@ -48,7 +48,7 @@ exports.category_create = function(req, res, next) {
       return;
     }
     Category.create(req.body.name).then(result => {
-      res.json(result);
+      res.status(201).json(result);
     }).catch(next);
   });
 };

@@ -4,6 +4,9 @@ const router = express.Router();
 const post_controller = require('../controllers/postController');
 
 const multer  = require('multer');
+const bodyParser = require('body-parser'); //http req body parser
+const jsonParser = bodyParser.json();
+
 const path = require('path');
 const expressValidator = require('express-validator');
 
@@ -26,12 +29,14 @@ router.get('/', post_controller.post_list);
 
 router.post('/', upload.single('thumbnail'), post_controller.post_create);
 
+router.post('/sort' , jsonParser, post_controller.posts_sort);
+
 router.route('/:post_id([0-9]{1,3})')
 .all(function(req, res, next) {
   next();
 })
 .get(post_controller.post_detail)
-.put(upload.single('thumbnail'), post_controller.post_update)
+.patch(upload.single('thumbnail'), post_controller.post_update)
 .delete(post_controller.post_delete);
 
 

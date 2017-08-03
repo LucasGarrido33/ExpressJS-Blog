@@ -12,7 +12,7 @@ class CategoryList extends Component {
     let categories = this.props.categories.map((category) =>  <CategoryListItem key={category.id} onHandleDeleteCategory={this.props.onDeleteCategory} category={category}/>);
     return (
       <div>
-        <ul>{ categories }</ul>
+        <ul className="list-group">{ categories }</ul>
       </div>
     );
   }

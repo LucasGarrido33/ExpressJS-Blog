@@ -8,6 +8,9 @@ import {connect} from 'react-redux';
     }
 
     render(){
+      if (!this.props.posts.length){
+        return <div className="text-center"><h1>No posts yet</h1></div>;
+      }
       return (
         <PostList posts={this.props.posts}/>
       );

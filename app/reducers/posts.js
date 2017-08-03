@@ -1,5 +1,4 @@
 import * as types from '../actions/actionTypes';
-import {browserHistory } from 'react-router';
 
 // takes the current state and an action and it returns the next state
 const posts = (state = [], action) => {
@@ -10,7 +9,12 @@ const posts = (state = [], action) => {
 
     case types.CREATE_POST_SUCCESS:
       return [
-        ...state.filter(post => post.id !== action.post.id),
+        ...state
+        .filter(post => post.id !== action.post.id)
+        .map((post) => {
+          post.display_order +=1;
+          return post;
+        }),
         Object.assign({}, action.post)
       ];
 
@@ -24,11 +28,13 @@ const posts = (state = [], action) => {
     }
 
     case types.UPDATE_POST_SUCCESS:
-      browserHistory.push('/admin/posts');
       return [
         ...state.filter(post => post.id !== action.post.id),
         Object.assign({}, action.post)
       ];
+
+    case types.SORT_POSTS_SUCCESS:
+      return action.posts;
 
     default:
       return state;

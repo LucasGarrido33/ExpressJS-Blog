@@ -4,12 +4,14 @@ import renderDropzoneInput from '../Fields/RenderDropzoneInput';
 import renderDropdownSelect from '../Fields/renderDropdownSelect';
 import PropTypes from 'prop-types';
 import renderField from '../Fields/RenderField';
+import { addAlert } from '../../actions/alertActions';
 import { FormGroup, Col, Button } from 'react-bootstrap';
 
 class PostForm extends Component {
 
   render() {
     const { handleSubmit, categories, submitting } = this.props;
+    const loading = <div><i className="fa fa-circle-o-notch fa-spin fa-fw"></i> Loading</div>;
 
     return (
       <form onSubmit={handleSubmit} encType="multipart/form-data" className="form-horizontal">
@@ -24,8 +26,8 @@ class PostForm extends Component {
 
         <FormGroup>
           <Col smOffset={2} sm={10}>
-            <Button type="submit">
-              Submit
+            <Button type="submit" disabled={submitting} block bsStyle="info">
+              {submitting?loading:'Submit'}
             </Button>
           </Col>
         </FormGroup>
@@ -69,6 +71,9 @@ const validate = values => {
 PostForm = reduxForm({
   form: 'post', // a unique name for this form
   enableReinitialize: true,
+  onSubmitSuccess: (result, dispatch) => {
+    dispatch(addAlert('New post created'));
+  },
   validate
 })(PostForm);
 
