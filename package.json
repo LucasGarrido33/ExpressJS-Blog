@@ -1,18 +1,19 @@
 {
   "name": "ophelieapp",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development nodemon --inspect ./server/bin/www",
     "start:prod": "NODE_ENV=production node ./server/bin/www",
-    "build:clean": "rm -rf dist && webpack --config webpack.config.dev.js --color -p --progress",
-    "build": "NODE_ENV=production webpack --config webpack.prod.babel.js --color -p --progress"
+    "build:clean": "rm -rf dist && webpack --config webpack.config.prod.js --color -p --progress",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js --color -p --progress"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
     "bootstrap": "~3.3.7",
     "cookie-parser": "~1.4.3",
     "csurf": "~1.9.0",
+    "db-migrate": "^0.10.0-beta.21",
     "db-migrate-mysql": "~1.1.10",
     "debug": "~2.2.0",
     "dotenv": "~4.0.0",
@@ -31,6 +32,7 @@
     "morgan": "~1.7.0",
     "multer": "~1.3.0",
     "mysql": "^2.13.0",
+    "offline-plugin": "^4.8.3",
     "prop-types": "^15.5.8",
     "react": "~15.4.2",
     "react-bootstrap": "~0.30.8",

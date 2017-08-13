@@ -18,6 +18,9 @@ import configureStore from './store/configureStore';
 
 import {loadPosts} from './actions/postActions';
 import {loadCategories} from './actions/categoryActions';
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
+OfflinePluginRuntime.install();
 
 const store = configureStore();
 store.dispatch(loadPosts());

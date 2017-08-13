@@ -35,7 +35,6 @@ app.use('/api/categories', categories);
 // app.use('/api/admin', jwt({secret: 'shhhhh'}));
 // app.use('/api/admin', admin);
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 //setup app rendering react front end

@@ -9,8 +9,10 @@ let connection = mysql.createConnection({
   multipleStatements: true
 });
 
-connection.connect();
+connection.connect((err) => {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
-// connection.end();
 
 module.exports = connection;

@@ -45,7 +45,7 @@ exports.post_detail = function(req, res, next) {
 exports.post_delete = function(req, res, next) {
   Promise.all(
     [
-      fs.remove(path.join('./uploads/' + req.post.thumbnail)),
+      fs.remove(path.join('server/uploads/' + req.post.thumbnail)),
       Post.delete(req.post.id)
     ])
     .then(result => {

@@ -10,9 +10,10 @@ const jsonParser = bodyParser.json();
 const path = require('path');
 const expressValidator = require('express-validator');
 
+console.log(__dirname);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, 'server/uploads')
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))

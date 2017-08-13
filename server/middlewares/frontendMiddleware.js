@@ -2,7 +2,6 @@
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
-
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
   const webpack = require('webpack');
@@ -44,7 +43,7 @@ const addProdMiddlewares = (app, options) => {
   // and other good practices on official Express.js docs http://mxs.is/googmy
   app.use(compression());
   app.use(publicPath, express.static(outputPath));
-  // app.use(express.static(path.join(process.cwd(), 'dist')));
+  app.use(express.static(path.join(process.cwd(), 'dist')));
 
   app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
 };
@@ -56,6 +55,7 @@ module.exports = (app, options) => {
   const isProd = process.env.NODE_ENV === 'production';
 
   if (isProd) {
+
     addProdMiddlewares(app, options);
   } else {
     const webpackConfig = require('../../webpack.config.dev');

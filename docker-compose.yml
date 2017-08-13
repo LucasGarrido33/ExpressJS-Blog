@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: sa4lu2
+      MYSQL_DATABASE: honey_dev
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+  web:
+    build: .
+    volumes:
+      - .:/src
+    ports:
+      - "3000:3000"
+    links:
+      - db:mysql

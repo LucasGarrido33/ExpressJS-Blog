@@ -44,7 +44,6 @@ class DraggableList extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     this.setState({sortableArray: nextProps.elements});
   };
 
