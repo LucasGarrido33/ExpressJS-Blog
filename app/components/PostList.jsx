@@ -35,8 +35,6 @@ class PostList extends Component {
 
   render(){
     let images = [];
-    const pathToImage = require.context('../../server/uploads', true);
-
     const posts = this.props.posts.map((post, index) => {
       images.push({src: post['thumbnail'], caption: post.content});
       return (<div className="thumbnail-container column" id="caption" key={index} onClick={() => this.openLightBox(index)}>

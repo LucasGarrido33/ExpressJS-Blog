@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import renderDropzoneInput from '../Fields/RenderDropzoneInput';
-import renderDropdownSelect from '../Fields/renderDropdownSelect';
+import renderDropdownSelect from '../Fields/RenderDropdownSelect';
 import PropTypes from 'prop-types';
 import renderField from '../Fields/RenderField';
 import { addAlert } from '../../actions/alertActions';
