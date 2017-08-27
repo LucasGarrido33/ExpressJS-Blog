@@ -3,7 +3,7 @@ class CategoryApi {
   static getAllCategories() {
 
   return fetch('/api/categories',
-    { credentials: 'same-origin' })
+    { method: 'GET' })
     .then((response) => response.json()).catch(error => error);
   }
 
@@ -28,7 +28,6 @@ class CategoryApi {
     });
     return fetch(`/api/categories/${category.id}`,
       {
-        credentials: 'same-origin',
         headers: myHeaders,
         method: 'PATCH',
         body: JSON.stringify({

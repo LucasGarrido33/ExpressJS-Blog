@@ -1,8 +1,9 @@
 class PostApi {
 
   static getAllPosts() {
-  return fetch('/api/posts',
-    { credentials: 'same-origin'})
+  return fetch('/api/posts', {
+    method: 'GET'
+  })
     .then((response) => response.json()).catch(error => error);
   }
 
@@ -11,7 +12,6 @@ class PostApi {
       'Content-Type': 'application/json'
     });
     return fetch('/api/posts/sort', {
-      credentials: 'same-origin',
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({
@@ -32,7 +32,6 @@ class PostApi {
     data.append('thumbnail', post.thumbnail[0]);
 
     return fetch(`/api/posts/${post.id}`, {
-      credentials: 'same-origin',
       method: 'PATCH',
       body: data
     })
@@ -64,7 +63,6 @@ class PostApi {
     data.append('category', post.category);
 
     return fetch('/api/posts', {
-      credentials: 'same-origin',
       method: 'POST',
       body: data
     })
