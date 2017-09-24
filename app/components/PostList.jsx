@@ -37,7 +37,7 @@ class PostList extends Component {
     let images = [];
     const posts = this.props.posts.map((post, index) => {
       images.push({src: post['thumbnail'], caption: post.content});
-      return (<div className="thumbnail-container column col-md-6" id="caption" key={index} onClick={() => this.openLightBox(index)}>
+      return (<div className="thumbnail-container column" id="caption" key={index} onClick={() => this.openLightBox(index)}>
         <span className="text"><h1>{post.title}</h1></span>
         {<img className="img-responsive" src={post['thumbnail']}/> }
       </div>);
@@ -53,14 +53,12 @@ class PostList extends Component {
         onClose={this.closeLightbox}
         currentImage={this.state.currentImageIndex}
       />
-
-          {posts}
-      {/* <div className="col-md-6 nopadding">
+      <div className="col-md-6 nopadding">
         {posts.filter((e, i) => !(i%2)) }
       </div>
       <div className="col-md-6 nopadding">
         {posts.filter((e, i) => i%2) }
-      </div> */}
+      </div>
     </div>
 
   );
