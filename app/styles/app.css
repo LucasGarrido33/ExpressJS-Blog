@@ -33,8 +33,12 @@ header {
   height:auto;
 }*/
 
+.gallery {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .thumbnail-container {
-  padding:40px;
+  padding: 5px;
 }
 
 /*.thumbnail-container:hover {
