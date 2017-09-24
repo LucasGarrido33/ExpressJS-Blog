@@ -39,7 +39,7 @@ class PostList extends Component {
       images.push({src: post['thumbnail'], caption: post.content});
       return (<div className="thumbnail-container column" id="caption" key={index} onClick={() => this.openLightBox(index)}>
         <span className="text"><h1>{post.title}</h1></span>
-        {<img src={post['thumbnail']}/> }
+        {<img className="img-responsive" src={post['thumbnail']}/> }
       </div>);
     }
   );

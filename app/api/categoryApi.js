@@ -8,7 +8,6 @@ class CategoryApi {
   }
 
   static createCategory(category){
-    console.log('test');
     const myHeaders = new Headers({
       'Authorization': `Bearer ${sessionStorage.jwt}`,
       'Content-Type': 'application/json'

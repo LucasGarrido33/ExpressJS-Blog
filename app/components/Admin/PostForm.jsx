@@ -49,14 +49,14 @@ const validate = values => {
 
   if (!values.title) {
     errors.title = 'Required';
-  } else if (values.title.length > 15) {
-    errors.title = 'Must be 15 characters or less';
+  } else if (values.title.length > 30) {
+    errors.title = 'Must be 30 characters or less';
   }
 
   if (!values.content){
     errors.content = 'Required';
-  } else if (values.content.length > 15){
-    errors.content = 'Must be 15 carachters or less';
+  } else if (values.content.length > 40){
+    errors.content = 'Must be 40 carachters or less';
   }
   if (!values.thumbnail){
     errors.thumbnail = 'Required';

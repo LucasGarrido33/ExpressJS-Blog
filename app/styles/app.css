@@ -28,13 +28,13 @@ header {
     position: absolute;
 }
 
-.gallery img {
+/*.gallery img {
   width: 100%;
   height:auto;
-}
+}*/
 
 .thumbnail-container {
-  padding: 13px 13px 13px 13px;
+  padding:40px;
 }
 
 /*.thumbnail-container:hover {
