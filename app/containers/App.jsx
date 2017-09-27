@@ -16,7 +16,7 @@ class App extends Component {
             </div>
 
             <div className="col-md-1">
-              <div className="social-list hidden-xs">
+              <div className="social-list hidden-xs hidden-sm">
                 <Nav style="list-unstyled"/>
               </div>
             </div>

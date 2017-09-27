@@ -20,7 +20,7 @@ class Header extends Component {
             <li><Link to="/contact" className="scale" activeClassName="active-header">CONTACT</Link></li>
             <li><a href="https://www.etsy.com/fr/shop/HoneyShopArt" className="scale">SHOP</a></li>
           </ul>
-          <div className="social-list visible-xs">
+          <div className="social-list visible-xs visible-sm">
             <Nav style="list-inline small"/>
           </div>
         </div>
