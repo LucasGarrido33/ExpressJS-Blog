@@ -34,7 +34,7 @@ class Home extends Component {
               <div className="card-header">
                 <h2>List</h2>
               </div>
-              <div className="card-content">
+              <div className="card-content list">
                 <PostList posts={posts} onDeletePost={this.props.onDeletePostClick}/>
               </div>
             </div>

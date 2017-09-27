@@ -32,6 +32,10 @@ header {
   width: 100%;
   height:auto;
 }*/
+.card-content.list {
+  max-height: 290px;
+  overflow: scroll;
+}
 
 .gallery {
   padding-left: 20px;
@@ -41,9 +45,9 @@ header {
   padding: 5px;
 }
 
-/*.thumbnail-container:hover {
+.thumbnail-container:hover {
   cursor:pointer;
-}*/
+}
 
 .header-nav li a {
   text-decoration: none !important;
@@ -61,7 +65,7 @@ header .list-inline li {
   padding: 0;
 }
 
-header .list-inline li:not(:last-child):after{
+header .list-inline.menu li:not(:last-child):after{
   content:'•';
   margin:0 13px;
 }
@@ -89,6 +93,13 @@ header .list-inline li:not(:last-child):after{
 
 .social-list li {
   margin-top:10px;
+}
+.social-list .small {
+  display: inline-block;
+  margin: 0 auto;
+}
+.social-list .small img{
+  width:40px;
 }
 
 .nopadding {
