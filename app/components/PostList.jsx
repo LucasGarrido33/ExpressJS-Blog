@@ -50,7 +50,7 @@ class PostList extends Component {
     }
   );
   return (
-    <div className="columns">
+    <div className="columns is-variable is-1">
       <Lightbox
         isOpen={this.state.lightboxIsOpen}
         onClickPrev={this.gotoPrevious}

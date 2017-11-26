@@ -118,6 +118,7 @@ header .list-inline.menu li:not(:last-child):after{
 }
 .caption {
   position: relative;
+  padding-bottom: 0.50rem;
 }
 .text {
   color: black;
