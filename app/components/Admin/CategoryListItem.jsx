@@ -17,14 +17,35 @@ class CategoryListElement extends Component {
   render(){
     return (
       <li className="list-group-item">
-        <span className="card-list-title"><h4>{this.props.category.name}</h4></span>
-        <ButtonToolbar>
+        <p className="control">
+          <label className="label">{this.props.category.name}</label>
+        </p>
+        <div className="field is-grouped">
+          <p className="control">
+            <Link className="button is-info is-small" to={'/admin/category/edit/' + this.props.category.id}>
+            <span className="icon is-small">
+              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </span>
+            <span>Edit</span>
+            </Link>
+          </p>
+          <p className="control">
+            <a className="button is-danger is-small" onClick={this.handleDeleteButtonClick}>
+              <span className="icon is-small">
+                <i className="fa fa-times" aria-hidden="true"></i>
+              </span>
+              <span>Remove</span>
+            </a>
+          </p>
+        </div>
+        {/* <span className="card-list-title"><h4>{this.props.category.name}</h4></span> */}
+        {/* <ButtonToolbar>
 
         <Link to={'/admin/category/edit/' + this.props.category.id}>
           <Button bsSize="small">Edit <Glyphicon glyph="glyphicon glyphicon-edit"/></Button>
         </Link>
         <Button bsSize="small" bsStyle="danger" onClick={this.handleDeleteButtonClick}>Remove <Glyphicon glyph="glyphicon glyphicon-remove"/></Button>
-      </ButtonToolbar>
+      </ButtonToolbar> */}
       </li>
     );
   }

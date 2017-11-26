@@ -8,19 +8,20 @@ class App extends Component {
   render(){
     const children = this.props.children;
     return (
-      <div className="container-fluid">
+      <div className="">
         <Header />
-          <div className="row">
-            <div className="col-md-offset-1 col-md-10">
+        <div className="section">
+          <div className="columns">
+            <div className="column is-10 is-offset-1">
                 {children}
             </div>
-
-            <div className="col-md-1">
-              <div className="social-list hidden-xs hidden-sm">
-                <Nav style="list-unstyled"/>
-              </div>
+            <div className="column is-1">
+                <div className="container">
+                  <Nav style="social-list is-hidden-mobile"/>
+                </div>
             </div>
           </div>
+        </div>
       </div>
 
     );

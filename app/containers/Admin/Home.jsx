@@ -26,57 +26,69 @@ class Home extends Component {
 					timeout={5000}
           onDismiss={this.props.dismissAlert}
 				/>
-        <div className="row">
+        <h1 className="has-text-centered title">Posts</h1>
 
-          <h1 className="text-center">Posts</h1>
-          <div className="col-md-3">
+        <div className="columns">
+
+          <div className="column">
             <div className="card">
               <div className="card-header">
-                <h2>List</h2>
+                <p className="card-header-title">
+                  List
+                </p>
               </div>
               <div className="card-content list">
                 <PostList posts={posts} onDeletePost={this.props.onDeletePostClick}/>
               </div>
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="column">
             <div className="card">
               <div className="card-header">
-                <h2>Create</h2>
+                <p className="card-header-title">
+                  Create
+                </p>
               </div>
               <div className="card-content">
                 <PostForm onSubmit={this.props.onCreatePostClick} categories={this.props.categories}/>
               </div>
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="column">
             <div className="card">
               <div className="card-header">
-                <h2>Sort</h2>
+                <p className="card-header-title">
+                  Sort
+                </p>
               </div>
-              <div className="card-content">
+              <div className="card-content list">
                 <DraggableList onClick={this.props.onSortPostsClick} elements={posts}/>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="row">
-          <h1 className="text-center">Categories</h1>
-          <div className="col-md-3">
+        <h1 className="has-text-centered title">Categories</h1>
+
+        <div className="columns">
+          <div className="column">
             <div className="card">
               <div className="card-header">
-                <h2>List</h2>
+                <p className="card-header-title">
+                  List
+                </p>
               </div>
-              <div className="card-content">
+              <div className="card-content list">
                 <CategoryList categories={categories} onDeleteCategory={this.props.onDeleteCategoryClick}/>
               </div>
             </div>
           </div>
-          <div className="col-md-9">
+          <div className="column">
             <div className="card">
               <div className="card-header">
-                <h2>Create</h2>
+                <p className="card-header-title">
+                  Create
+                </p>
               </div>
               <div className="card-content">
                 <CategoryForm onSubmit={this.props.onCreateCategoryClick} />

@@ -9,11 +9,11 @@ class Nav extends Component {
   render(){
     return (
       <ul className={this.props.style}>
-        <li><a href="https://www.instagram.com/opheliehoney/"><img className="img-fluid scale" src={insta_icon}></img></a></li>
-        <li><a href="https://honeysupercat.tumblr.com/"><img className="img-fluid scale" src={tumblr_icon}></img></a></li>
-        <li><a href="https://www.facebook.com/opheliehoney/"><img className="img-fluid scale" src={facebook_icon}></img></a></li>
-        <li><a href="https://fr.pinterest.com/ophelieortal/"><img className="img-fluid scale" src={pint_icon}></img></a></li>
-        <li><a href="https://www.linkedin.com/in/ophelie-ortal-15a29164/"><img className="img-fluid scale" src={linkedin_icon}></img></a></li>
+        <li><a href="https://www.instagram.com/opheliehoney/"><img className="image scale" src={insta_icon}></img></a></li>
+        <li><a href="https://honeysupercat.tumblr.com/"><img className="image scale" src={tumblr_icon}></img></a></li>
+        <li><a href="https://www.facebook.com/opheliehoney/"><img className="image scale" src={facebook_icon}></img></a></li>
+        <li><a href="https://fr.pinterest.com/ophelieortal/"><img className="image scale" src={pint_icon}></img></a></li>
+        <li><a href="https://www.linkedin.com/in/ophelie-ortal-15a29164/"><img className="image scale" src={linkedin_icon}></img></a></li>
       </ul>
     );
   }

@@ -10,11 +10,13 @@ class LoginForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form className="form-signin" onSubmit={handleSubmit}>
-        <h1 className="text-center">Hello Honey</h1>
-        <Field label="Mot de passe" name="password" component={loginField} type="text"/>
-        <Button componentClass="text-center" label="login" type="input"/>
-      </form>
+      <div className="box">
+        <form className="form-signin" onSubmit={handleSubmit}>
+          <h1 className="has-text-centered title is-4 has-text-grey">Honey Dashboard</h1>
+          <Field label="Password" name="password" component={loginField} type="password"/>
+          <Button componentClass="text-center" label="Login" type="submit"/>
+        </form>
+      </div>
     );
   }
 }

@@ -125,7 +125,14 @@ class DraggableList extends React.Component {
           );
         })}
         </div>
-        <Button onClick={() => {this.props.onClick(this.state.sortableArray) }} type="submit" block bsStyle="info">Submit</Button>
+        <div className="field">
+          <p className="control">
+            <button onClick={() => {this.props.onClick(this.state.sortableArray) }} type="submit" className="button is-primary is-fullwidth">
+              Submit
+            </button>
+          </p>
+        </div>
+        {/* <Button onClick={() => {this.props.onClick(this.state.sortableArray) }} type="submit" block bsStyle="info">Submit</Button> */}
       </div>
 
     );

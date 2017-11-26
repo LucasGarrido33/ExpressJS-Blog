@@ -16,14 +16,20 @@ class CategoryForm extends Component {
     return (
       <form onSubmit={handleSubmit} className="form-horizontal">
         <Field label="Nom" name="name" component={renderField} type="text"/>
-
-        <FormGroup>
+        <div className="field">
+          <p className="control">
+            <button disabled={submitting} type="submit" className={'button is-primary is-fullwidth ' + (submitting ? 'is-loading' : '')}>
+              Submit
+            </button>
+          </p>
+        </div>
+        {/* <FormGroup>
           <Col smOffset={2} sm={10}>
             <Button type="submit" disabled={submitting} block bsStyle="info">
               {submitting?loading:'Submit'}
             </Button>
           </Col>
-        </FormGroup>
+        </FormGroup> */}
 
       </form>
     );

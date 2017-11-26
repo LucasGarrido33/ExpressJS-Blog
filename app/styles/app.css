@@ -11,48 +11,34 @@
 
 body{
   font-family: "CaviarDreams";
-  min-height: 100%;
 }
 
 header {
-  padding-top:20px;
   margin-bottom:10px;
   text-align: center;
 }
 
 .header-nav {
-  margin-bottom: 55px;
+  margin-bottom: 30px;
 }
 
 .absolute-wrapper{
     position: absolute;
 }
+#image-contact {
+  margin: 0 auto;
+}
 
-/*.gallery img {
-  width: 100%;
-  height:auto;
-}*/
 .card-content.list {
   max-height: 290px;
   overflow: scroll;
 }
 
-.gallery {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.thumbnail-container {
-  padding: 5px;
-}
-
-.thumbnail-container:hover {
-  cursor:pointer;
-}
 
 .header-nav li a {
   text-decoration: none !important;
   color:black;
-  font-size: 1.4em;
+  font-size: 1.2em;
   display: inline-block;
 }
 
@@ -72,6 +58,7 @@ header .list-inline.menu li:not(:last-child):after{
 
 #main-logo  {
   margin-bottom:20px;
+  margin: 0 auto;
 }
 .scale {
   -webkit-transition: all 0.1s linear;
@@ -102,50 +89,42 @@ header .list-inline.menu li:not(:last-child):after{
   width:40px;
 }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
 /*image hover effect*/
 
-.column#caption {
-  position: relative;
+.grid li {
+    display: inline-block;
+    width: 450px;
+    padding: 10px;
+}
+.overlay {
+  cursor:pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #ffffffb5;
 }
 
-.column#caption .text {
+.caption:hover .overlay {
+  opacity: 1;
+}
+.caption {
+  position: relative;
+}
+.text {
+  color: black;
+  font-size: 35px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
-  opacity: 0;
-  transition: all 0.8s ease;
+  -ms-transform: translate(-50%, -50%);
 }
-
-.column#caption .text h1 {
-  margin: 0;
-  color: black;
-}
-
-.column#caption:hover .text {
-  opacity: 1;
-}
-
-.column#caption img {
-  cursor:pointer;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-  -ms-transition: opacity 0.5s ease-in-out;
-  -o-transition: opacity 0.5s ease-in-out;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.column#caption img:hover {
-  opacity: 0.5;
-}
-
-
 
 /*button */
 

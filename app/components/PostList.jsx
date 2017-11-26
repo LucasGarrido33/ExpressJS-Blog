@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-images';
+import LazyLoad from 'react-lazyload';
 
 class PostList extends Component {
 
@@ -37,14 +38,19 @@ class PostList extends Component {
     let images = [];
     const posts = this.props.posts.map((post, index) => {
       images.push({src: post['thumbnail'], caption: post.content});
-      return (<div className="thumbnail-container column" id="caption" key={index} onClick={() => this.openLightBox(index)}>
-        <span className="text"><h1>{post.title}</h1></span>
-        {<img className="img-responsive" src={post['thumbnail']}/> }
-      </div>);
+      return (
+          <li  className="caption" key={index} onClick={() => this.openLightBox(index)}>
+          <LazyLoad height={400} offset={400} once>
+            <img className="image" src={post['thumbnail']}/>
+          </LazyLoad>
+          <div className="overlay">
+            <div className="text">{post.title}</div>
+          </div>
+          </li>);
     }
   );
   return (
-    <div className="gallery row">
+    <div>
       <Lightbox
         isOpen={this.state.lightboxIsOpen}
         onClickPrev={this.gotoPrevious}
@@ -53,12 +59,15 @@ class PostList extends Component {
         onClose={this.closeLightbox}
         currentImage={this.state.currentImageIndex}
       />
-      <div className="col-md-6 nopadding">
+      {/* <div className="column">
         {posts.filter((e, i) => !(i%2)) }
       </div>
-      <div className="col-md-6 nopadding">
+      <div className="column">
         {posts.filter((e, i) => i%2) }
-      </div>
+      </div> */}
+      <ul className="grid has-text-centered caption-style-4">
+        {posts}
+      </ul>
     </div>
 
   );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SideBar from '../../components/Admin/Sidebar';
+// import SideBar from '../../components/Admin/Sidebar';
 import NavBar from '../../components/Admin/Navbar';
 
 class App extends Component {
@@ -10,17 +10,17 @@ class App extends Component {
     const children = this.props.children;
 
     return (
-      <div className="dashboard">
+      <div className="">
         <NavBar />
-          <div className="container">
-            <div className="row row-offcanvas row-offcanvas-left">
+          <div className="section hero is-fullheight is-light">
+            <div className="container">
               {/* <div className="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
                   <SideBar />
                 </div> */}
                   {children}
             </div>
           </div>
-        <footer className="container-fluid">
+        <footer className="container">
             <p className="text-right small">©2016-2017 Company</p>
         </footer>
       </div>

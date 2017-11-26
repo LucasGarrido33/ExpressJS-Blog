@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import routes from './routers/routes';
 
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+import 'bulma/css/bulma.css';
 import 'font-awesome/css/font-awesome.css';
 import './styles/app.css';
 import './styles/login.css';
 import './styles/dashboard.css';
 import './styles/spinner.css';
-import './styles/fonts/CaviarDreams.ttf';
-import './styles/fonts/CaviarDreams_Bold.ttf';
+// import './styles/fonts/CaviarDreams.ttf';
+// import './styles/fonts/CaviarDreams_Bold.ttf';
 
 import {Router, browserHistory} from 'react-router';
 import { Provider } from 'react-redux';

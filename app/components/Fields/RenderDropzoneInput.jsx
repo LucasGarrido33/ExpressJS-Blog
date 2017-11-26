@@ -44,29 +44,44 @@ class renderDropzoneInput extends Component {
        }
 
     return (
-      <FormGroup controlId={input.name} validationState={ validationState }>
-
-        <Col componentClass={ControlLabel} sm={2}>
-          {label}
-        </Col>
-
-        <Col sm={10}>
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="control">
           <Dropzone id="dropzone" name={name} multiple={false}
             onDragEnter={this.onDragEnter.bind(this)}
             onDragLeave={this.onDragLeave.bind(this)}
             onDrop={this.onDrop.bind(this)}>
-             { !dropzoneActive && <div>Dropzone.</div> }
-             {files && Array.isArray(files) && (files.map((file, i) => <img key={i} src={file.preview}/> ))}
+            { !dropzoneActive && <div>Dropzone.</div> }
+            { files && Array.isArray(files) && (files.map((file, i) => <img key={i} src={file.preview}/> ))}
           </Dropzone>
-        </Col>
-
-        <Col smOffset={2} sm={10}>
-          { feedbackIcon ? <FormControl.Feedback>{ feedbackIcon }</FormControl.Feedback> : null }
+        </div>
+        <p className="help is-danger">
           { message }
-        </Col>
-
-
-      </FormGroup>
+        </p>
+      </div>
+      // <FormGroup controlId={input.name} validationState={ validationState }>
+      //
+      //   <Col componentClass={ControlLabel} sm={2}>
+      //     {label}
+      //   </Col>
+      //
+      //   <Col sm={10}>
+      //     <Dropzone id="dropzone" name={name} multiple={false}
+      //       onDragEnter={this.onDragEnter.bind(this)}
+      //       onDragLeave={this.onDragLeave.bind(this)}
+      //       onDrop={this.onDrop.bind(this)}>
+      //        { !dropzoneActive && <div>Dropzone.</div> }
+      //        {files && Array.isArray(files) && (files.map((file, i) => <img key={i} src={file.preview}/> ))}
+      //     </Dropzone>
+      //   </Col>
+      //
+      //   <Col smOffset={2} sm={10}>
+      //     { feedbackIcon ? <FormControl.Feedback>{ feedbackIcon }</FormControl.Feedback> : null }
+      //     { message }
+      //   </Col>
+      //
+      //
+      // </FormGroup>
     );
   }
 }

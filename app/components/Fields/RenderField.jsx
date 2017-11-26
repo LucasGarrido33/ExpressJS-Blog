@@ -14,7 +14,17 @@ class renderField extends Component {
        }
 
     return (
-        <FormGroup controlId={input.name} validationState={ validationState }>
+
+        <div className="field">
+          <label className="label">{label}</label>
+          <div className="control">
+            <input className="input" type={type} placeholder={label} {...input}/>
+          </div>
+          <p className="help is-danger">
+            { message }
+          </p>
+        </div>
+        /* <FormGroup controlId={input.name} validationState={ validationState }>
 
           <Col componentClass={ControlLabel} sm={2}>
             {label}
@@ -29,7 +39,7 @@ class renderField extends Component {
             { message }
           </Col>
 
-        </FormGroup>
+        </FormGroup> */
     );
   }
 }

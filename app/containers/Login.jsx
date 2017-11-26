@@ -14,19 +14,21 @@ class Login extends Component {
     if (this.props.loggedIn) {
       browserHistory.push('/admin');
     }
-    document.body.classList.toggle('login');
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('login');
   }
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="test">
-            <LoginForm onSubmit={this.props.logInUser}/>
+      <div className="section hero is-fullheight is-light">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-4 is-offset-4">
+              <div className="login">
+              <LoginForm onSubmit={this.props.logInUser}/>
+              </div>
+            </div>
           </div>
         </div>
       </div>

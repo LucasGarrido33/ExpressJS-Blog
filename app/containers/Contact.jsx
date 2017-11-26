@@ -4,8 +4,8 @@ import circleHoney from '../images/circle_honey.png';
 class Contact extends Component {
   render(){
     return (
-      <div className="row text-center">
-        <img width="200" src={circleHoney} />
+      <div className="content has-text-centered">
+        <img className="image" id="image-contact" width="200" src={circleHoney} />
         <h1>OPHELIE ORTAL</h1>
         <hr></hr>
 

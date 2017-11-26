@@ -5,7 +5,7 @@ import renderDropdownSelect from '../Fields/RenderDropdownSelect';
 import PropTypes from 'prop-types';
 import renderField from '../Fields/RenderField';
 import { addAlert } from '../../actions/alertActions';
-import { FormGroup, Col, Button } from 'react-bootstrap';
+// import { FormGroup, Col, Button } from 'react-bootstrap';
 
 class PostForm extends Component {
 
@@ -24,14 +24,20 @@ class PostForm extends Component {
 
         <Field type="select" label="Categorie" name="category" categories={categories} component={renderDropdownSelect}/>
 
-        <FormGroup>
+        {/* <FormGroup>
           <Col smOffset={2} sm={10}>
             <Button type="submit" disabled={submitting} block bsStyle="info">
               {submitting?loading:'Submit'}
             </Button>
           </Col>
-        </FormGroup>
-
+        </FormGroup> */}
+        <div className="field">
+          <p className="control">
+            <button disabled={submitting} type="submit" className={'button is-primary is-fullwidth ' + (submitting ? 'is-loading' : '')}>
+              Submit
+            </button>
+          </p>
+        </div>
       </form>
     );
   }
