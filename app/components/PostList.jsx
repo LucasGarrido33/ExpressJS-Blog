@@ -39,18 +39,18 @@ class PostList extends Component {
     const posts = this.props.posts.map((post, index) => {
       images.push({src: post['thumbnail'], caption: post.content});
       return (
-          <li  className="caption" key={index} onClick={() => this.openLightBox(index)}>
+          <div  className="caption" key={index} onClick={() => this.openLightBox(index)}>
           <LazyLoad height={200} offset={200}>
             <img className="image" src={post['thumbnail']}/>
           </LazyLoad>
           <div className="overlay">
             <div className="text">{post.title}</div>
           </div>
-          </li>);
+        </div>);
     }
   );
   return (
-    <div>
+    <div className="columns">
       <Lightbox
         isOpen={this.state.lightboxIsOpen}
         onClickPrev={this.gotoPrevious}
@@ -59,15 +59,15 @@ class PostList extends Component {
         onClose={this.closeLightbox}
         currentImage={this.state.currentImageIndex}
       />
-      {/* <div className="column">
+      <div className="column">
         {posts.filter((e, i) => !(i%2)) }
       </div>
       <div className="column">
         {posts.filter((e, i) => i%2) }
-      </div> */}
-      <ul className="grid has-text-centered caption-style-4">
+      </div>
+      {/* <ul className="grid has-text-centered caption-style-4">
         {posts}
-      </ul>
+      </ul> */}
     </div>
 
   );

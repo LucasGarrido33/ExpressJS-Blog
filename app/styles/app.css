@@ -94,11 +94,11 @@ header .list-inline.menu li:not(:last-child):after{
 
 /*image hover effect*/
 
-.grid li {
+/*.grid li {
     display: inline-block;
     width: 50%;
     padding: 10px;
-}
+}*/
 .overlay {
   cursor:pointer;
   position: absolute;
