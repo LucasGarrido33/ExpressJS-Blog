@@ -12,12 +12,12 @@ class App extends Component {
         <Header />
         <div className="section">
           <div className="columns">
-            <div className="column is-10 is-offset-1">
+            <div className="column is-8 is-offset-2">
                 {children}
             </div>
-            <div className="column is-1">
+            <div className="column">
                 <div className="container">
-                  <Nav style="social-list is-hidden-mobile"/>
+                  <Nav style="social-list is-hidden-mobile is-text-centered"/>
                 </div>
             </div>
           </div>

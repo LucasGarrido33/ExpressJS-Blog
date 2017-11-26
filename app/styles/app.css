@@ -14,13 +14,13 @@ body{
 }
 
 header {
-  margin-bottom:10px;
   text-align: center;
+  padding-top: 30px;
 }
 
-.header-nav {
+/*.header-nav {
   margin-bottom: 30px;
-}
+}*/
 
 .absolute-wrapper{
     position: absolute;
@@ -73,7 +73,10 @@ header .list-inline.menu li:not(:last-child):after{
           transform: scale(1.13);
 
 }
-
+.social-list {
+  margin: auto;
+  width: 85%;
+}
 .social-list img {
   width: 45px;
 }
@@ -93,7 +96,7 @@ header .list-inline.menu li:not(:last-child):after{
 
 .grid li {
     display: inline-block;
-    width: 450px;
+    width: 50%;
     padding: 10px;
 }
 .overlay {
