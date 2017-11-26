@@ -62,7 +62,8 @@ class Home extends Component {
                 </p>
               </div>
               <div className="card-content list">
-                <DraggableList onClick={this.props.onSortPostsClick} elements={posts}/>
+                TODO
+                {/* <DraggableList onClick={this.props.onSortPostsClick} elements={posts}/> */}
               </div>
             </div>
           </div>
