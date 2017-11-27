@@ -40,7 +40,7 @@ class PostList extends Component {
       images.push({src: post['thumbnail'], caption: post.content});
       return (
           <div  className="caption" key={index} onClick={() => this.openLightBox(index)}>
-          <LazyLoad height={200}>
+          <LazyLoad height={400}>
             <img className="image" src={post['thumbnail']}/>
           </LazyLoad>
           <div className="overlay">
