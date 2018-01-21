@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PostList from '../../components/Admin/PostList';
 import CategoryList from '../../components/Admin/CategoryList';
 import DraggableList from '../../components/Admin/DraggableList';
+
 import PostForm from '../../components/Admin/PostForm';
 import CategoryForm from '../../components/Admin/CategoryForm';
 import {deleteCategory, createCategory} from '../../actions/categoryActions';
@@ -61,9 +62,8 @@ class Home extends Component {
                   Sort
                 </p>
               </div>
-              <div className="card-content list">
-                  <h1 className="title">Todo</h1>
-                {/* <DraggableList onClick={this.props.onSortPostsClick} elements={posts}/> */}
+              <div className="card-content">
+                <DraggableList onClick={this.props.onSortPostsClick} elements={posts}/>
               </div>
             </div>
           </div>
